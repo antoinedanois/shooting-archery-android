@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
         int coucou;
         int lol;
 
+        int coucouJeromine;
     }
 }
