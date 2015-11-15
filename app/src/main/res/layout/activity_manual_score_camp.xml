@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:text="@string/choix_cible"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/color_button" />
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/cibleBirdee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_birdee" />
+
+                <RadioButton
+                    android:id="@+id/cibleGaz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:button="@drawable/radiobutton_gaziniere" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/cible60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:button="@drawable/radiobutton_soixante" />
+
+                <RadioButton
+                    android:id="@+id/cible80"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:button="@drawable/radiobutton_quatrevingt" />
+            </LinearLayout>
+</RadioGroup>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type de Cible :"
+                android:layout_margin="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/connu"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@string/connu"
+                android:textColor="@color/color_button"
+                android:textSize="@dimen/size_16" />
+
+            <RadioButton
+                android:id="@+id/inconnu"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@string/inconnu"
+                android:textColor="@color/color_button"
+                android:textSize="@dimen/size_16" />
+
+</RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/distance_en_m"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/color_button" />
+
+            <TextView
+                android:id="@+id/Distance_score_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFC04D" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <SeekBar
+                android:id="@+id/Seekbar_score_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:max="60"
+                android:progress="0" />
+
+        </LinearLayout>
+
+           <TextView
+               android:id="@+id/textView3"
+               android:layout_width="wrap_content"
+               android:layout_height="0dp"
+               android:layout_gravity="center"
+               android:layout_marginTop="25dp"
+               android:layout_weight="1"
+               android:text="@string/enter_score"
+               android:textAppearance="?android:attr/textAppearanceLarge"
+               android:textColor="@color/color_button" />
+
+       <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="0dp"
+           android:layout_marginTop="25dp"
+           android:layout_weight=".125"
+           android:gravity="center"
+           android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/manscore_edittext1_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:textSize="20sp" 
+
+            android:editable="false"
+            >
+
+            <requestFocus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/manscore_edittext2_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:textSize="20sp" 
+
+            android:editable="false"
+             />
+
+        <EditText
+            android:id="@+id/manscore_edittext3_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:textSize="20sp"
+            android:editable="false"/>
+
+
+
+    </LinearLayout>
+    
+		<TableLayout
+		    android:id="@+id/tabButton"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:layout_marginTop="25dp"
+		    android:layout_weight="100"
+		    android:stretchColumns="*" >
+			    
+			<TableRow
+			    android:id="@+id/third_row"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:layout_margin="0dip"
+			    android:layout_weight="50" >
+
+				<Button
+				    android:id="@+id/manscore_buttonScore6_2"
+				    style="?android:attr/borderlessButtonStyle"
+				    android:layout_width="0dip"
+				    android:layout_height="fill_parent"
+				    android:layout_margin="4dp"
+				    android:background="@color/color_jaune"
+				    android:text="6"
+				    android:textColor="@color/color_button"
+				    android:textSize="@dimen/size_32" />
+				
+				<Button
+				    android:id="@+id/manscore_buttonScore5_2"
+				    style="?android:attr/borderlessButtonStyle"
+				    android:layout_width="0dip"
+				    android:layout_height="fill_parent"
+				    android:layout_margin="4dp"
+				    android:background="@color/color_jaune"
+				    android:text="5"
+				    android:textColor="@color/color_button"
+				    android:textSize="@dimen/size_32" />
+
+			</TableRow>
+			
+			<TableRow
+			    android:id="@+id/four_row"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:layout_margin="0dip"
+			    android:layout_weight="50" >
+				
+				<Button
+				    android:id="@+id/manscore_buttonScore4_2"
+				    style="?android:attr/borderlessButtonStyle"
+				    android:layout_width="0dip"
+				    android:layout_height="fill_parent"
+				    android:layout_margin="4dp"
+				    android:background="@color/color_button"
+				    android:text="4"
+				    android:textColor="@android:color/white"
+				    android:textSize="@dimen/size_32" />
+				
+				<Button
+				    android:id="@+id/manscore_buttonScore3_2"
+				    style="?android:attr/borderlessButtonStyle"
+				    android:layout_width="0dip"
+				    android:layout_height="fill_parent"
+				    android:layout_margin="4dp"
+				    android:background="@color/color_button"
+				    android:text="3"
+				    android:textColor="@android:color/white"
+				    android:textSize="@dimen/size_32" />
+			    
+			</TableRow>
+			
+			<TableRow
+			    android:id="@+id/sixe_row"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:layout_margin="0dip"
+			    android:layout_weight="50"
+                >
+
+			<Button
+			    android:id="@+id/manscore_buttonScore2_2"
+			    style="?android:attr/borderlessButtonStyle"
+			    android:layout_width="0dip"
+			    android:layout_height="fill_parent"
+			    android:layout_margin="4dp"
+			    android:background="@color/color_button"
+			    android:text="2"
+			    android:textColor="@android:color/white"
+			    android:textSize="@dimen/size_32"
+                />
+
+			<Button
+			    android:id="@+id/manscore_buttonScore1_2"
+			    style="?android:attr/borderlessButtonStyle"
+			    android:layout_width="0dip"
+			    android:layout_height="fill_parent"
+			    android:layout_margin="4dp"
+			    android:background="@color/color_button"
+			    android:text="1"
+			    android:textColor="@android:color/white"
+			    android:textSize="@dimen/size_32" />
+
+			</TableRow>
+            <TableRow
+                android:id="@+id/five_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:layout_weight="50" >
+            <Button
+                android:id="@+id/manscore_buttonScore0_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"
+                android:text="Manqué"
+                android:layout_span="2"/>
+			</TableRow>
+		</TableLayout>
+       
+            <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".125"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/manscore_buttonValidate"
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:background="@android:color/holo_green_light"
+            android:text="@string/valider"
+            android:textColor="@color/color_button"
+            android:textColorLink="@color/color_button"
+            android:textSize="@dimen/size_32"
+            />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

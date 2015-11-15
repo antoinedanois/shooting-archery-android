@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shootingarchery="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_photo"
+        android:orderInCategory="100"
+        shootingarchery:showAsAction="always"
+        android:icon="@drawable/target"
+        android:title="@string/action_photo" />
+
+    <item
+        android:id="@+id/action_finseance"
+        android:orderInCategory="100"
+        android:icon="@drawable/action_accept"
+        shootingarchery:showAsAction="ifRoom"
+        android:title="@string/action_finseance"/>
+</menu>

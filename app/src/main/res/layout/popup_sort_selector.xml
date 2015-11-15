@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <CheckBox
+        android:id="@+id/popup_type_cible"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Type de cible" />
+
+    <CheckBox
+        android:id="@+id/popup_entrain_compet"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Entrainement / compétition" />
+
+    <CheckBox
+        android:id="@+id/popup_type_environnement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Type d&apos;environnement" />
+
+</LinearLayout>

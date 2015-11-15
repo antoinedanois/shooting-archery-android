@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/size10"
+        android:layout_height="73dp"
+        android:text="@string/txt_conseil_intro_tir"
+        android:id="@+id/textView17"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal" />
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_90"
+            android:text="@string/btn_tir_echauf"
+            android:id="@+id/btn_tir_echauf"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/color_button_text_menu"
+            android:textColorHint="@color/color_button_text_menu"
+            android:textStyle="bold"
+            android:background="@color/color_button_menu"
+            android:textSize="@dimen/size_23"
+            android:layout_marginBottom="@dimen/size_4"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/layout_echauf"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="33dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/titre_echauf"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="77dp"
+                    android:text="@string/txt_echauf"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="231dp"
+                    android:text="@string/liste_echauf"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="36dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/titre_etir"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="68dp"
+                    android:text="@string/txt_etir"
+                    android:layout_gravity="center_horizontal" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="match_parent"
+                    android:text="@string/liste_etir"
+                    android:layout_gravity="center_horizontal" />
+
+
+
+                </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_90"
+            android:text="@string/btn_tir_secu"
+            android:id="@+id/btn_tir_secu"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/color_button_text_menu"
+            android:textColorHint="@color/color_button_text_menu"
+            android:textStyle="bold"
+            android:background="@color/color_button_menu"
+            android:textSize="@dimen/size_23"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/layout_secu"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="71dp"
+                    android:text="@string/txt_secu"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/size10"
+                    android:layout_height="449dp"
+                    android:text="@string/liste_collectif"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="3.33" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

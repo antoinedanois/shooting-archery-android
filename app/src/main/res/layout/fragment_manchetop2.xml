@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6" >
+
+            <TextView
+                android:id="@+id/tabmid_f3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".16"
+                android:gravity="center"
+                android:text="@string/tabtop_numero" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tabmid_f6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/tabtop_pointsparfleches" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tabmid_nomanche"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1" />
+
+                    <TextView
+                        android:id="@+id/tabbot_sum"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2" />
+
+                    <TextView
+                        android:id="@+id/tabmid_f2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="3" />
+
+                    <TextView
+                        android:id="@+id/tabtop2_f4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="4" />
+
+                    <TextView
+                        android:id="@+id/tabtop2_f5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="5" />
+
+                    <TextView
+                        android:id="@+id/tabtop2_f6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="6" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tabmid_f4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".16"
+                android:gravity="center"
+                android:text="@string/tabtop_totalvolee"
+                android:textColor="@color/totalvolee" />
+
+            <TextView
+                android:id="@+id/tab_midf5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".16"
+                android:gravity="center"
+                android:text="@string/tabtop_totalcumule" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".4"
+            android:weightSum="3" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/moyenne"
+                android:textColor="@color/moyenne" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/nombre_10"
+                android:textColor="@color/titre1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/nombre_9"
+            android:textColor="@color/nb9" />
+    </LinearLayout>
+
+</LinearLayout>
+
+<View
+    android:layout_width="wrap_content"
+    android:layout_height="2dip"
+    android:background="#FF909090" />
+
+</LinearLayout>

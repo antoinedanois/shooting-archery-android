@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shootingarchery="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/action_next"
+        android:orderInCategory="100"
+        android:icon="@drawable/next_item"
+        shootingarchery:showAsAction="always"
+        android:title="@string/next">
+    </item>
+
+</menu>

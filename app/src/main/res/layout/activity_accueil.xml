@@ -1,0 +1,163 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+
+    <TextView
+        android:id="@+id/accueil_libscorerecent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/accueil_libscorerecent"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center|start|top"
+            android:orientation="vertical" >
+            <!--<Button
+                android:id="@+id/nouveau"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_60"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/size_4"
+                android:layout_marginTop="@dimen/size_4"
+                android:background="@color/color_button"
+                android:text="@string/nouveau"
+                android:textColor="@color/color_button_text"
+                android:textColorHint="@color/color_button_text"
+                android:textSize="@dimen/size_32"/>
+            <Button
+                android:id="@+id/score"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_60"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@color/color_button"
+                android:text="@string/score"
+                android:textColor="@color/color_button_text"
+                android:textColorHint="@color/color_button_text"
+                android:textSize="@dimen/size_32" />
+            <Button
+                android:id="@+id/monarc"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_60"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@color/color_button"
+                android:text="@string/mes_arcs_accueil"
+                android:textColor="@color/color_button_text"
+                android:textColorHint="@color/color_button_text"
+                android:textSize="@dimen/size_32" />
+            <Button
+                android:id="@+id/conseil"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_60"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@color/color_button"
+                android:text="@string/conseil"
+                android:textColor="@color/color_button_text"
+                android:textColorHint="@color/color_button_text"
+                android:textSize="@dimen/size_32" />-->
+
+            <Button
+                android:id="@+id/nouveau"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_90"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/size_4"
+                android:layout_marginTop="@dimen/size_4"
+                android:background="@color/color_button_menu"
+                android:text="@string/nouveau"
+                android:textColor="@color/color_button_text_menu"
+                android:textColorHint="@color/color_button_text_menu"
+                android:textSize="@dimen/size_32"
+                android:drawableLeft="@drawable/sheet3"
+                android:paddingLeft="@dimen/size_32"
+                android:textStyle="bold"
+                android:layout_weight="0.25" />
+            <Button
+                android:id="@+id/score"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_90"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@color/color_button_menu"
+                android:text="@string/score"
+                android:textColor="@color/color_button_text_menu"
+                android:textColorHint="@color/color_button_text_menu"
+                android:textSize="@dimen/size_32"
+                android:drawableLeft="@drawable/view28"
+                android:paddingLeft="30dp"
+                android:textStyle="bold"
+                android:layout_weight="0.25" />
+            <Button
+                android:id="@+id/monarc"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_90"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@color/color_button_menu"
+                android:text="@string/mes_arcs_accueil"
+                android:textColor="@color/color_button_text_menu"
+                android:textColorHint="@color/color_button_text_menu"
+                android:textSize="@dimen/size_32"
+                android:drawableLeft="@drawable/bow12"
+                android:paddingLeft="30dp"
+                android:textStyle="bold"
+                android:layout_weight="0.25" />
+            <Button
+                android:id="@+id/conseil"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_90"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@color/color_button_menu"
+                android:text="@string/conseil"
+                android:textColor="@color/color_button_text_menu"
+                android:textColorHint="@color/color_button_text_menu"
+                android:textSize="@dimen/size_32"
+                android:drawableLeft="@drawable/message31"
+                android:paddingLeft="30dp"
+                android:textStyle="bold"
+                android:layout_weight=".25" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/accueil_noDataText"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Aucune partie\nà afficher"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_dark" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"
+        android:layout_below="@+id/accueil_libscorerecent"
+        android:layout_marginTop="250dp"
+    	android:paddingLeft="@dimen/activity_horizontal_margin"
+    	android:paddingRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/accueil_fragments"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

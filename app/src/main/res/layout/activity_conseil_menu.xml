@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:weightSum="1">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/size10"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_descri"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_tir"
+        android:id="@+id/btn_cons_tir"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"
+        android:layout_marginBottom="@dimen/size_4"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_cons_reg"
+        android:id="@+id/btn_cons_reg"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"
+        android:layout_marginBottom="@dimen/size_4"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_cho_arc"
+        android:id="@+id/btn_cons_arc"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"/>
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

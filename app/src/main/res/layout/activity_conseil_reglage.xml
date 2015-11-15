@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/size10"
+        android:layout_height="105dp"
+        android:text="@string/txt_conseil_intro_reg"
+        android:id="@+id/textView17"
+        android:textSize="18dp"
+        android:layout_gravity="center_horizontal" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_reg_band"
+        android:id="@+id/btn_reg_band"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"
+        android:layout_marginBottom="@dimen/size_4"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/layout_band"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="45dp"
+
+                android:text="@string/txt_descri_band"
+                android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/band"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="33dp"
+
+                android:text="@string/txt_reg_band"
+                android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/reg_band"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_reg_tiller"
+        android:id="@+id/btn_reg_tiller"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"
+        android:layout_marginBottom="@dimen/size_4"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/layout_tiller"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="73dp"
+
+                android:text="@string/txt_descri_tiller"
+                android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/tiller"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="77dp"
+                android:text="@string/txt_reg_tiller"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_reg_detallonage"
+        android:id="@+id/btn_reg_detal"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"
+        android:layout_marginBottom="@dimen/size_4"/>
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/layout_detal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="93dp"
+
+                android:text="@string/txt_descri_deta"
+                android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/reg_deta"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_90"
+        android:text="@string/btn_reg_berger"
+        android:id="@+id/btn_reg_berger"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_button_text_menu"
+        android:textColorHint="@color/color_button_text_menu"
+        android:textStyle="bold"
+        android:background="@color/color_button_menu"
+        android:textSize="@dimen/size_23"/>
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/layout_berger"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="50dp"
+
+                android:text="@string/txt_descri_bb"
+                android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/bb"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/size10"
+                android:layout_height="148dp"
+
+                android:text="@string/txt_reg_bb"
+                android:layout_gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/reg_bb"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

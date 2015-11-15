@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:paddingLeft="@dimen/size15"
+        android:layout_marginTop="@dimen/size10"
+        android:text="@string/choix_piquet"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/color_button" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp" >
+
+            <RadioButton
+                android:id="@+id/config3Campagne_radiopiquet1"
+                android:button="@drawable/radiobutton_selectorp0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:checked="false"
+                android:layout_marginLeft="@dimen/size20"
+                />
+
+            <RadioButton
+                android:id="@+id/config3Campagne_radiopiquet2"
+                android:button="@drawable/radiobutton_selectorp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                 />
+
+            <RadioButton
+                android:id="@+id/config3Campagne_radiopiquet3"
+                android:button="@drawable/radiobutton_selectorp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/config3Campagnelayout_libel_nbr_cible"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/config3Campagne_libnbr_cible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/nbr_cible"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="horizontal"
+                android:paddingLeft="1dp"
+                android:paddingTop="@dimen/size15">
+
+                <RadioButton
+                    android:id="@+id/config3Campagne_radio12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:checked="false"
+                    android:text="@string/cible12" />
+                <RadioButton
+                    android:id="@+id/config3Campagne_radio16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:checked="false"
+                    android:text="@string/cible16" />
+
+                <RadioButton
+                    android:id="@+id/config3Campagne_radio20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="@string/cible20" />
+
+                <RadioButton
+                    android:id="@+id/config3Campagne_radio24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:text="@string/cible24" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/config3Campagnelayout_num_cible"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/config3Campagne_libnum1erecible"
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@string/num_cible"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+ />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/config3Campagne_editnum1erecible"
+            android:inputType="number"
+
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

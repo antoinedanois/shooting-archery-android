@@ -1,0 +1,150 @@
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SortActivity" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/sort_list_user"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".30"
+            android:gravity="center"
+            android:text="Utilisateur : " />
+
+        <Spinner
+            android:id="@+id/sort_spinner_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".70" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sort_cible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/sort_choix_cible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cible : "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RadioGroup
+            android:id="@+id/sort_radio_group_cible"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/sort_blason"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:checked="false"
+                android:text="@string/classique" />
+
+            <RadioButton
+                android:id="@+id/sort_trispot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/trispot" />
+            <RadioButton
+                android:id="@+id/sort_campagne"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/campagne" />
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sort_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/sort_choix_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type :"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RadioGroup
+            android:id="@+id/sort_radio_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/sort_competition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="Compétition" />
+
+            <RadioButton
+                android:id="@+id/sort_entrainement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="Entrainement" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sort_environnement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/sort_choix_environnement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Environnement :"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RadioGroup
+            android:id="@+id/sort_radio_group_exterieur_interieur"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/sort_interieur"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:checked="false"
+                android:text="Intérieur" />
+
+            <RadioButton
+                android:id="@+id/sort_exterieur"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="Extérieur" />
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>
