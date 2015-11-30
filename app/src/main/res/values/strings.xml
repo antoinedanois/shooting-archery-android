@@ -276,5 +276,10 @@
     <string name="name_no_space">Le nom ne peut pas contenir d\'espace.</string>
     <string name="firstname_no_space">Le prenom ne peut pas contenir d\'espace.</string>
     <string name="fleche_moyenne">Flèche moyenne</string>
+    <string name="title_activity_config_nplayers">ConfigNPlayersActivity</string>
+    <string name="title_activity_multiplayer_selection">MultiplayerSelectionActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

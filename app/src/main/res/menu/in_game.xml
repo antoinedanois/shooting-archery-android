@@ -5,6 +5,7 @@
         android:id="@+id/action_photo"
         android:orderInCategory="100"
         shootingarchery:showAsAction="always"
+        android:showAsAction="always"
         android:icon="@drawable/target"
         android:title="@string/action_photo" />
 
@@ -13,5 +14,6 @@
         android:orderInCategory="100"
         android:icon="@drawable/action_accept"
         shootingarchery:showAsAction="ifRoom"
+        android:showAsAction="ifRoom"
         android:title="@string/action_finseance"/>
 </menu>

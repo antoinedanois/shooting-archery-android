@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -231,9 +232,8 @@ public class AccueilActivity extends Activity {
                     startActivity(intent3);
                     break;
                 case R.id.conseil:
-					Toast.makeText(view.getContext(),"hey",Toast.LENGTH_LONG).show();
-                    //Intent intent4 = new Intent(view.getContext(), ConseilActivity.class);
-                    //startActivity(intent4);
+                    Intent intent4 = new Intent(view.getContext(), ConseilActivity.class);
+                    startActivity(intent4);
                     break;
 
             }

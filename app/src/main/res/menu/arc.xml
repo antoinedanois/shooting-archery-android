@@ -6,6 +6,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/action_discard"
         shootingarchery:showAsAction="always"
+        android:showAsAction="always"
         android:title="@string/delete_arc">
     </item>
     <item

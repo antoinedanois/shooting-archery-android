@@ -6,6 +6,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/add_person"
         shootingarchery:showAsAction="always"
+        android:showAsAction="always"
         android:title="@string/add_user">
     </item>
     
@@ -14,6 +15,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/next_item"
         shootingarchery:showAsAction="always"
+        android:showAsAction="always"
         android:title="@string/next">
     </item>
 

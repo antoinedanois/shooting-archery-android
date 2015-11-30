@@ -11,7 +11,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
         <activity android:name=".AccueilActivity" >
         </activity>
         <activity
@@ -159,7 +158,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
-
+        <activity
+            android:name=".ConfigNPlayersActivity"
+            android:label="@string/title_activity_config_nplayers" >
+        </activity>
+        <activity
+            android:name=".MultiplayerSelectionActivity"
+            android:label="@string/title_activity_multiplayer_selection" >
+        </activity>
     </application>
 
 </manifest>

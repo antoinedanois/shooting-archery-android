@@ -6,6 +6,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/plus"
         shootingarchery:showAsAction="always"
+        android:showAsAction="always"
         android:title="@string/add_arc">
     </item>
 </menu>

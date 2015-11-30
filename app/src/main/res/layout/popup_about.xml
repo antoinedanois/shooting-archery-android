@@ -54,6 +54,22 @@
                 android:layout_weight=".5"
                 android:gravity="center"
                 android:text="JOURNET Jéromine" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:text="DANOIS Antoine" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:text="EL-HABOUTI Karam" />
         </LinearLayout>
 
     </LinearLayout>

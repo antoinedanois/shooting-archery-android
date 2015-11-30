@@ -22,6 +22,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/action_settings"
         shootingarchery:showAsAction="always"
+        android:showAsAction="always"
         android:title="@string/action_settings">
     </item>
     
