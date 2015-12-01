@@ -35,6 +35,20 @@
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
+            android:name=".ConfigNPlayersActivity"
+            android:label="@string/title_activity_config_nplayers" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
+        </activity>
+        <activity
+            android:name=".MultiplayerSelectionActivity"
+            android:label="@string/title_activity_multiplayer_selection" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iutbmteprow.shootingarchery.ConfigNPlayersActivity" />
+        </activity>
+        <activity
             android:name=".Config2Activity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_config2"
@@ -158,14 +172,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
-        <activity
-            android:name=".ConfigNPlayersActivity"
-            android:label="@string/title_activity_config_nplayers" >
-        </activity>
-        <activity
-            android:name=".MultiplayerSelectionActivity"
-            android:label="@string/title_activity_multiplayer_selection" >
-        </activity>
+
     </application>
 
 </manifest>
