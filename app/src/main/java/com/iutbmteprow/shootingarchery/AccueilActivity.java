@@ -220,7 +220,7 @@ public class AccueilActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.nouveau:
-                    Intent intent = new Intent(view.getContext(), ConfigNPlayersActivity.class);
+                    Intent intent = new Intent(view.getContext(), MultiplayerSelectionActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.score:

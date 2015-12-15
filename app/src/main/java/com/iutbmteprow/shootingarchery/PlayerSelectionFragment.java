@@ -22,6 +22,7 @@ import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
  */
 public class PlayerSelectionFragment extends Fragment {
 
+    int noPlayer;
     Spinner playerSpinner=null;
     TextView gradeU=null;
     private DBHelper db;
@@ -47,6 +48,7 @@ public class PlayerSelectionFragment extends Fragment {
     }
 
     private void loadAttributes(View v){
+        noPlayer=getArguments().getInt("noPlayer");
         playerSpinner=(Spinner)v.findViewById(R.id.playerSpinner);
         gradeU=(TextView)v.findViewById(R.id.playerS_gradeU);
     }
@@ -58,7 +60,7 @@ public class PlayerSelectionFragment extends Fragment {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         playerSpinner.setAdapter(adapter);
-
+        playerSpinner.setSelection(noPlayer);
 
         playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -68,6 +70,7 @@ public class PlayerSelectionFragment extends Fragment {
 
                 try {
                     gradeU.setText(curUser.getGrade());
+                    savePreferences();
                 } catch (NoSuchFieldException e) {
                     gradeU.setText("Grade inconnu...");
                 }
@@ -82,4 +85,18 @@ public class PlayerSelectionFragment extends Fragment {
         });
     }
 
+
+    private void savePreferences()
+    {
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("partie", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("NomUtilisateur"+noPlayer, playerSpinner.getSelectedItem().toString());
+        String userSpinner = playerSpinner.getSelectedItem().toString();
+
+        String[] nomUtil = userSpinner.split(" ");
+        editor.putInt("idUtilisateur"+noPlayer, db.getUtilisateurFromName(nomUtil[0], nomUtil[1]).getId());
+
+        editor.commit();
+    }
 }

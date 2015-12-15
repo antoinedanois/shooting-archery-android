@@ -4,14 +4,17 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,10 +26,14 @@ import com.iutbmteprow.shootingarchery.dbman.DBHelper;
 import com.iutbmteprow.shootingarchery.dbman.UserAlreadyRegisteredException;
 import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MultiplayerSelectionActivity extends Activity {
 
     private DBHelper db;
     LinearLayout spinerContainer;
+    private Spinner nPlayerSpinner=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,28 +51,61 @@ public class MultiplayerSelectionActivity extends Activity {
             makeUser();
         };
 
-        getParameters();
+        loadAttributes();
     }
 
-    private void getParameters(){
+    private void loadAttributes(){
         spinerContainer=(LinearLayout)findViewById(R.id.SpinnerContainer);
-        Bundle b=getIntent().getExtras();
-        if(b!=null) {
-            int qty = Integer.valueOf(b.getString("playersQty"));
-            loadFragments(qty);
-        }
+        nPlayerSpinner=(Spinner)findViewById(R.id.userQtySpinner);
+        setupSpinner();
+        loadFragments(1);
     }
 
     private void loadFragments(int qty){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(spinerContainer.getChildCount()==0) {
-            for (int i = 0; i < qty; i++) {
-                PlayerSelectionFragment frag = new PlayerSelectionFragment();
-                fragmentTransaction.add(R.id.SpinnerContainer, frag, "playerFrag");
-            }
-            fragmentTransaction.commit();
+        spinerContainer.removeAllViews();
+        for (int i = 0; i < qty; i++) {
+            PlayerSelectionFragment frag = new PlayerSelectionFragment();
+            fragmentTransaction.add(R.id.SpinnerContainer, frag, "playerFrag");
+
+            Bundle params=new Bundle();
+            params.putInt("noPlayer",i);
+            frag.setArguments(params);
         }
+        fragmentTransaction.commit();
+    }
+
+    private void setupSpinner() {
+        //Remplissage Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, getSpinnerElements());
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        nPlayerSpinner.setAdapter(adapter);
+
+        nPlayerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                loadFragments(Integer.valueOf(nPlayerSpinner.getSelectedItem().toString()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    private List<String> getSpinnerElements(){
+        List<String> players=new ArrayList<>();
+        players.add("1");
+        players.add("2");
+        players.add("3");
+        players.add("4");
+
+        return players;
     }
 
     private boolean noUser() {
@@ -181,6 +221,8 @@ public class MultiplayerSelectionActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+
             case R.id.action_next:
                 Intent intent = new Intent(this, Config2Activity.class);
                 startActivity(intent);
@@ -194,5 +236,7 @@ public class MultiplayerSelectionActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

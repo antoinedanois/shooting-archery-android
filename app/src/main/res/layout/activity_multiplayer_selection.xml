@@ -7,18 +7,31 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.iutbmteprow.shootingarchery.MultiplayerSelectionActivity">
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView" >
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/SpinnerContainer"
-            android:orientation="vertical"
+        <Spinner
+            android:id="@+id/userQtySpinner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView" >
+
+            <LinearLayout
+                android:id="@+id/SpinnerContainer"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </RelativeLayout>
