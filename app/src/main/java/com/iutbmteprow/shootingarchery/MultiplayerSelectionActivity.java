@@ -52,6 +52,7 @@ public class MultiplayerSelectionActivity extends Activity {
         };
 
         loadAttributes();
+        //a guardar qty en sharedpreferences
     }
 
     private void loadAttributes(){
@@ -224,7 +225,7 @@ public class MultiplayerSelectionActivity extends Activity {
 
 
             case R.id.action_next:
-                Intent intent = new Intent(this, Config2Activity.class);
+                Intent intent = new Intent(this, MainConfigActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_addperson:

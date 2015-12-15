@@ -46,7 +46,14 @@
             android:label="@string/title_activity_multiplayer_selection" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.iutbmteprow.shootingarchery.ConfigNPlayersActivity" />
+                android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
+        </activity>
+        <activity
+            android:name=".MainConfigActivity"
+            android:label="@string/title_activity_main_config">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iutbmteprow.shootingarchery.MultiplayerSelectionActivity" />
         </activity>
         <activity
             android:name=".Config2Activity"
