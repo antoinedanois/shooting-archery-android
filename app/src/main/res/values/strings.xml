@@ -282,6 +282,7 @@
     <string name="title_activity_config_nplayers">ConfigNPlayersActivity</string>
     <string name="title_activity_multiplayer_selection">MultiplayerSelectionActivity</string>
     <string name="title_activity_main_config">Main Config</string>
+    <string name="joueurCourante">Joueur </string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

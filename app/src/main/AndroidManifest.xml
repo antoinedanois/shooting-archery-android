@@ -50,7 +50,7 @@
         </activity>
         <activity
             android:name=".MainConfigActivity"
-            android:label="@string/title_activity_main_config">
+            android:label="@string/title_activity_main_config" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.MultiplayerSelectionActivity" />
@@ -179,7 +179,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
-
+        <activity android:name=".IndividualConfigActivity" >
+        </activity>
     </application>
 
 </manifest>

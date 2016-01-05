@@ -10,20 +10,35 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainConfigActivity extends Activity {
 
-    Spinner typeTirSpinner;
     private RadioButton competition;
     private RadioButton entrainement;
     private RadioButton interieurRadio;
     private RadioButton exterieurRadio;
+    RadioButton classiqueRadio = null;
+    RadioButton trispotRadio = null;
+    RadioButton campagneRadio = null;
+    private SeekBar distance = null;
+    private TextView textProgressDistance;
+    private ImageView lastSeekbar;
+    private ImageView nextSeekbar;
+    int progressChanged = 0;
+    private LinearLayout distanceContainer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +52,113 @@ public class MainConfigActivity extends Activity {
     }
 
     private void loadAttributes(){
-        typeTirSpinner=(Spinner)findViewById(R.id.typeTirSpinner);
         competition = (RadioButton) findViewById(R.id.config2_radioCompetition);
         entrainement = (RadioButton) findViewById(R.id.config2_radioEntrainement);
         interieurRadio = (RadioButton) findViewById(R.id.config3_radioInterieur);
         exterieurRadio = (RadioButton) findViewById(R.id.config3_radioExterieur);
 
-        setupSpinner();
+        distanceContainer=(LinearLayout)findViewById(R.id.refresh_match_layout);
+
+        CompoundButton.OnCheckedChangeListener occl = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                if (!isChecked)
+                    return;
+
+                switch(buttonView.getId()) {
+                    case R.id.config2_radioCibleBlason: {
+                        distanceContainer.setVisibility(View.VISIBLE);
+                        break;
+                    }
+
+                    case R.id.config2_radioCibleTrispot: {
+                        distanceContainer.setVisibility(View.VISIBLE);
+                        break;
+                    }
+                    case R.id.config2_radioCibleCampagne: {
+                        distanceContainer.setVisibility(View.GONE);
+                        break;
+                    }
+                }
+            }
+        };
+        classiqueRadio = (RadioButton)findViewById(R.id.config2_radioCibleBlason);
+        classiqueRadio.setOnCheckedChangeListener(occl);
+        trispotRadio = (RadioButton)findViewById(R.id.config2_radioCibleTrispot);
+        trispotRadio.setOnCheckedChangeListener(occl);
+        campagneRadio = (RadioButton)findViewById(R.id.config2_radioCibleCampagne);
+        campagneRadio.setOnCheckedChangeListener(occl);
+
+        distance = (SeekBar) findViewById(R.id.config3_seekDistance);
+        textProgressDistance = (TextView) findViewById(R.id.config3_progressDistance);
+
+        lastSeekbar = (ImageView) findViewById(R.id.config3_prec);
+        nextSeekbar = (ImageView) findViewById(R.id.config3_suiv);
+
+        setupDistanceBar();
+
+    }
+
+    private void setupDistanceBar(){
+        /*
+		 * PROGRESSION SEEKBAR WITH BUTTON
+		 */
+
+        //SEEKBAR DISTANCE
+        distance.setMax(100);
+        //lastSeekBar button
+        lastSeekbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                distance.setProgress(distance.getProgress() - 1);
+            }
+        });
+        //nextSeekBar button
+        nextSeekbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                distance.setProgress(distance.getProgress()+1);
+            }
+        });
+
+        //INITIALISATION DES VALEURS DE DISTANCE
+        distance.setProgress(50);
+        textProgressDistance.setText("50");
+
+        distance.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar arg0) {
+                String intProgressChanged = String.valueOf(progressChanged);
+                textProgressDistance.setText(intProgressChanged);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar distance, int progress, boolean fromUser) {
+                progressChanged = progress;
+                String intProgressChanged = String.valueOf(progressChanged);
+                textProgressDistance.setText(intProgressChanged);
+            }
+        });
     }
 
     private void readPreferences() {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
+
+        if(preferences.getBoolean("RadioCibleCampagne", false)) {
+            classiqueRadio.setChecked(true);
+        }
+        if(preferences.getBoolean("RadioCibleBlason", false)){
+            trispotRadio.setChecked(true);
+        }
+        if(preferences.getBoolean("RadioCibleTrispot", false)){
+            trispotRadio.setChecked(true);
+        }
 
         //lecture choix condition
         if(preferences.getBoolean("RadioEntrainement", false))
@@ -60,23 +171,18 @@ public class MainConfigActivity extends Activity {
             interieurRadio.setChecked(true);
         if(preferences.getBoolean("RadioExterieur", false))
             exterieurRadio.setChecked(true);
+
+        //lecture distance
+        String TextDistance=preferences.getString("textProgressDistance", "50");
+        textProgressDistance.setText(TextDistance);
+        int SeekBarDistance=preferences.getInt("progressDistance", 50);
+        distance.setProgress(SeekBarDistance);
+        //fin lecture distance
     }
 
-    private void setupSpinner() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, getSpinnerElements());
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeTirSpinner.setAdapter(adapter);
-    }
 
-    private List<String> getSpinnerElements(){
-        List<String> players=new ArrayList<>();
-        players.add("FITA");
-        players.add("Campagne");
 
-        return players;
-    }
 
     private void setupActionBar()
     {
@@ -101,13 +207,13 @@ public class MainConfigActivity extends Activity {
                 if (!checkInputs())
                     return true;
 
-                if (typeTirSpinner.getSelectedItem().toString().equals("Campagne")){
+                if (campagneRadio.isChecked()){
                     savePreferences();
                     Intent intent = new Intent(this, Config3CampagneActivity.class);
                     startActivity(intent);
                 }else{
                     savePreferences();
-                    Intent intent = new Intent(this, Config3Activity.class);
+                    Intent intent = new Intent(this, IndividualConfigActivity.class);
                     startActivity(intent);
                 }
 
@@ -130,12 +236,24 @@ public class MainConfigActivity extends Activity {
             return false;
         }
 
+        if(textProgressDistance.equals("0")){
+            makeAlert(getString(R.string.erreur), getString(R.string.distance_error));
+            return false;
+        }
+
         return true;
     }
 
     private void savePreferences() {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putInt("lastPlayer",0);
+
+        //Choix cible
+        editor.putBoolean("ImageClassique",classiqueRadio.isChecked());
+        editor.putBoolean("ImageTrispot", trispotRadio.isChecked());
+        editor.putBoolean("ImageCampagne", campagneRadio.isChecked());
 
         //choix condition
         editor.putBoolean("RadioEntrainement", entrainement.isChecked());
@@ -144,6 +262,14 @@ public class MainConfigActivity extends Activity {
         //choix int?rieur/exterieur
         editor.putBoolean("RadioInterieur", interieurRadio.isChecked());
         editor.putBoolean("RadioExterieur", exterieurRadio.isChecked());
+
+        //choix distance
+        editor.putString("textProgressDistance", textProgressDistance.getText().toString());
+        int progressDistance= distance.getProgress();
+        editor.putInt("progressDistance", progressDistance);
+        //fin choix distance
+
+        editor.commit();
     }
 
     private void makeAlert(String title,String message)

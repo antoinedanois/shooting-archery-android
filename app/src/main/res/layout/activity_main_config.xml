@@ -22,12 +22,138 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/typeTirSpinner"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <HorizontalScrollView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="167dp"
+                android:id="@+id/horizontalScrollView" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="170dp"
+                    android:layout_gravity="top|left|center_horizontal">
+
+
+
+                    <RadioGroup android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton android:button="@drawable/radiobutton_selector0"
+                            android:id="@+id/config2_radioCibleBlason"
+                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_marginLeft="10dp"></RadioButton>
+
+                        <RadioButton android:button="@drawable/radiobutton_selector2"
+                            android:id="@+id/config2_radioCibleTrispot"
+                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_weight="0.25"></RadioButton>
+                        <RadioButton android:button="@drawable/radiobutton_gaziniere"
+                            android:id="@+id/config2_radioCibleCampagne"
+                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_weight="0.25"></RadioButton>
+                        <!--<RadioButton android:button="@drawable/radiobutton_selector3"
+                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_weight="0.25"></RadioButton>-->
+                    </RadioGroup>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/refresh_match_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="2dp"
+                android:shrinkColumns="0,1" >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/config3_libDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_margin="2dip"
+                        android:gravity="center"
+                        android:padding="2dip"
+                        android:text="@string/distance_en_m"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/config3_progressDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_margin="2dip"
+                        android:layout_weight="0.5"
+                        android:padding="2dip"
+                        android:text="@string/_0"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="100" >
+
+                <ImageButton
+                    android:id="@+id/config3_prec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:src="@drawable/nav_past" />
+
+                <SeekBar
+                    android:id="@+id/config3_seekDistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="80"
+                    android:max="100"
+                    android:progress="0"
+                    android:secondaryProgress="0" />
+
+                <ImageButton
+                    android:id="@+id/config3_suiv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:src="@drawable/nav_next" />
+            </LinearLayout>
+        </LinearLayout>
+
+
 
         <TextView
             android:id="@+id/config3_libConditions"

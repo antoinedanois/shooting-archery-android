@@ -66,7 +66,7 @@ public class MultiplayerSelectionActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         spinerContainer.removeAllViews();
-        for (int i = 0; i < qty; i++) {
+        for (int i = 1; i <= qty; i++) {
             PlayerSelectionFragment frag = new PlayerSelectionFragment();
             fragmentTransaction.add(R.id.SpinnerContainer, frag, "playerFrag");
 
@@ -225,6 +225,7 @@ public class MultiplayerSelectionActivity extends Activity {
 
 
             case R.id.action_next:
+                savePreferences();
                 Intent intent = new Intent(this, MainConfigActivity.class);
                 startActivity(intent);
                 return true;
@@ -238,6 +239,13 @@ public class MultiplayerSelectionActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void savePreferences() {
+        SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
 
+        editor.putInt("nPlayers",Integer.valueOf(nPlayerSpinner.getSelectedItem().toString()));
+
+        editor.commit();
+    }
 
 }

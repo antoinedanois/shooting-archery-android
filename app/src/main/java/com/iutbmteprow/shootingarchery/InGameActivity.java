@@ -52,10 +52,10 @@ public class InGameActivity extends Activity {
 
 	private void readPreferences() {
 		SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
-		noVolee = sp.getInt("currentVolee", 0);
-		noManche = sp.getInt("currentManche", 0);
+		noVolee = sp.getInt("p1currentVolee", 0);
+		noManche = sp.getInt("p1currentManche", 0);
 		
-		partie = db.getPartie(sp.getInt("idPartie", 0));
+		partie = db.getPartie(sp.getInt("p1idPartie", 0));
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class InGameActivity extends Activity {
 	public void onPause() {
 	    super.onPause();  // Always call the superclass method first
 	    SharedPreferences.Editor sp = getSharedPreferences("partie", Context.MODE_PRIVATE).edit();
-	    sp.putInt("currentVolee", noVolee);
-	    sp.putInt("currentManche", noManche);
+	    sp.putInt("p1currentVolee", noVolee);
+	    sp.putInt("p1currentManche", noManche);
 
 	    sp.commit();
 	}
@@ -80,7 +80,7 @@ public class InGameActivity extends Activity {
 		//Preparer le fragment avec ses arguments
 		stf = new ScoreTableFragment();
 		Bundle arguments = new Bundle();
-		arguments.putInt("idPartie",partie.getIdPartie());
+		arguments.putInt("p1idPartie",partie.getIdPartie());
 		stf.setArguments(arguments);
 		
 		//Installer le fragment dans la vue
