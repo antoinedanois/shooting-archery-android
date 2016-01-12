@@ -181,6 +181,10 @@
         </activity>
         <activity android:name=".IndividualConfigActivity" >
         </activity>
+        <activity
+            android:name=".InGameMultiActivity"
+            android:label="@string/title_activity_in_game_multi" >
+        </activity>
     </application>
 
 </manifest>

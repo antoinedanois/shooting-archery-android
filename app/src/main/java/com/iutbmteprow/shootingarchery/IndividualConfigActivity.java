@@ -299,7 +299,7 @@ public class IndividualConfigActivity extends Activity {
 
                 savePreferences();
                 if(lastPlayer==nPlayers){
-                    Intent intent = new Intent(this, InGameActivity.class);
+                    Intent intent = new Intent(this, InGameMultiActivity.class);
                     startActivity(intent);
                 } else if(lastPlayer<nPlayers){
                     Intent intent = new Intent(this, IndividualConfigActivity.class);
@@ -320,6 +320,9 @@ public class IndividualConfigActivity extends Activity {
 
         lastPlayer+=1;
         editor.putInt("lastPlayer",lastPlayer);
+
+        editor.putInt("p"+lastPlayer+"currentManche", 1);
+        editor.putInt("p"+lastPlayer+"currentVolee", 1);
 
         //Choix cible
         editor.putBoolean("p"+lastPlayer+"ImageClassique",classiqueRadio.isChecked());

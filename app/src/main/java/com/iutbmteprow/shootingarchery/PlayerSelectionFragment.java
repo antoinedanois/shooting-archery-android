@@ -48,7 +48,7 @@ public class PlayerSelectionFragment extends Fragment {
     }
 
     private void loadAttributes(View v){
-        noPlayer=getArguments().getInt("noPlayer");
+        noPlayer=getArguments().getInt("noPlayer")-1;
         playerSpinner=(Spinner)v.findViewById(R.id.playerSpinner);
         gradeU=(TextView)v.findViewById(R.id.playerS_gradeU);
     }
