@@ -1,4 +1,4 @@
-package com.iutbmteprow.shootingarchery;
+package com.antrodev.mont_finder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +10,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int coucou;
-        int lol;
 
-        int coucouJeromine;
     }
 }
