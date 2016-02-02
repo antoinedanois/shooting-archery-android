@@ -176,6 +176,10 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
                 startActivityForResult(intent, 1);
                 finish();
             } else{
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.putInt("currentPlayer",0);
+                Log.e("player 0:","set");
+                editor.commit();
                 finish();
             }
         }

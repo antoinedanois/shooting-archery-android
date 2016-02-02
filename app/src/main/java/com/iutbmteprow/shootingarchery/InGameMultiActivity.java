@@ -28,6 +28,9 @@ import com.iutbmteprow.shootingarchery.dbman.DBHelper;
 import com.iutbmteprow.shootingarchery.dbman.Partie;
 import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InGameMultiActivity extends Activity {
 
     int nPlayers;
@@ -38,6 +41,7 @@ public class InGameMultiActivity extends Activity {
     private int noVolee;
     private int noManche;
     private Partie partie;
+    List<ScoreTableFragmentv2> tables;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -63,6 +67,7 @@ public class InGameMultiActivity extends Activity {
         db = new DBHelper(this);
         loadAttributes();
         readPreferences();
+        tables=new ArrayList<>();
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -82,6 +87,7 @@ public class InGameMultiActivity extends Activity {
             public void onPageSelected(int position) {
                 actualPlayerNumber=position+1;
                 Log.e("dev","actual player: "+actualPlayerNumber);
+
             }
 
             @Override
@@ -167,7 +173,19 @@ public class InGameMultiActivity extends Activity {
         alertDialog.show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                for(int i=0;i<tables.size();i++){
+                    tables.get(i).refresh();
+                }
+            }
+        }
+    }
 
+    //------------------------------------------Class  SectionsPagerAdapter ------------------------------------------------------------
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -187,7 +205,10 @@ public class InGameMultiActivity extends Activity {
             position+=1;
 
             actualPlayerNom=getName(getID(actualPlayerNumber));
-            return PlaceholderFragment.newInstance(position + 1,actualPlayerNom);
+//          return PlaceholderFragment.newInstance(position + 1,actualPlayerNom);
+            ScoreTableFragmentv2 frag=ScoreTableFragmentv2.newInstance(position + 1);
+            tables.add(frag);
+            return frag;
         }
 
         public int getID(int playerNumber){

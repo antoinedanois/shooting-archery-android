@@ -250,6 +250,8 @@ public class MainConfigActivity extends Activity {
 
         editor.putInt("lastPlayer",0);
 
+
+
         //Choix cible
         editor.putBoolean("ImageClassique",classiqueRadio.isChecked());
         editor.putBoolean("ImageTrispot", trispotRadio.isChecked());

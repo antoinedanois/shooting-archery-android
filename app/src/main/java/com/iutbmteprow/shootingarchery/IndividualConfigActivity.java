@@ -322,6 +322,9 @@ public class IndividualConfigActivity extends Activity {
         lastPlayer+=1;
         editor.putInt("lastPlayer",lastPlayer);
 
+        //Taille Cible
+        editor.putInt("p"+lastPlayer+"idDiametre", listDiametre.get(spinner.getSelectedItemPosition()).getIdDiametre());
+
         editor.putInt("p"+lastPlayer+"currentManche", 1);
         editor.putInt("p"+lastPlayer+"currentVolee", 1);
         Log.e("dev","player: "+lastPlayer+" set.");
@@ -365,7 +368,7 @@ public class IndividualConfigActivity extends Activity {
         }
 
         int idPartie = new DBHelper(this).addPartie(new Partie(0, //idPartie
-                sp.getInt("idUtilisateur"+lastPlayer, 0), //idUtilisateur
+                sp.getInt("idUtilisateur"+(lastPlayer-1), 0), //idUtilisateur
                 false, //partieFinie
                 sp.getBoolean("p"+lastPlayer+"ImageClassique", true)?1:2, //idCible
                 sp.getInt("progressDistance", 0), //distanceCible
@@ -381,5 +384,6 @@ public class IndividualConfigActivity extends Activity {
         ) //nom arc
         );
         sp.edit().putInt("p"+lastPlayer+"idPartie", idPartie).commit();
+        Log.e("p"+lastPlayer+"idPartie",""+idPartie);
     }
 }

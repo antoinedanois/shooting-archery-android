@@ -9,20 +9,25 @@ import com.iutbmteprow.shootingarchery.dbman.Tirer;
 import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class ScoreTableFragmentv2 extends Fragment {
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
     View topView;
     List<List<View>> manches;
@@ -36,6 +41,17 @@ public class ScoreTableFragmentv2 extends Fragment {
 
     int currentPlayer;
 
+    public static ScoreTableFragmentv2 newInstance(int sectionNumber) {
+        ScoreTableFragmentv2 fragment = new ScoreTableFragmentv2();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public ScoreTableFragmentv2() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,15 +59,19 @@ public class ScoreTableFragmentv2 extends Fragment {
         noCumul10 = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("col_1010p", "per_row").equals("per_row");
 
         // Inflate the layout for this fragment
+        ScrollView rView=new ScrollView(getActivity());
+
         LinearLayout result = new LinearLayout(getActivity());
         result.setOrientation(LinearLayout.VERTICAL);
 
-        Bundle arguments = getArguments();
-        int idPartie = arguments.getInt("p1idPartie");
+        currentPlayer=getArguments().getInt(ARG_SECTION_NUMBER)-1;
+
+        SharedPreferences sp = getActivity().getSharedPreferences("partie", Context.MODE_PRIVATE);
+        int idPartie =sp.getInt("p" + currentPlayer + "idPartie",0);
 
         db = new DBHelper(getActivity());
         partie = db.getPartie(idPartie);
-
+        Log.e("idPartie",""+idPartie+", player: "+currentPlayer+", idU: "+partie.getIdUtilisateur());
         manches = new ArrayList<List<View>>();
 
         makeTopView(inflater, container, result);
@@ -61,7 +81,9 @@ public class ScoreTableFragmentv2 extends Fragment {
 
         //Eviter quelques exceptions inutiles
         ready = true;
-        return result;
+        rView.addView(result);
+
+        return rView;
     }
 
     private void makeManches(LayoutInflater inflater, ViewGroup container, LinearLayout result) {

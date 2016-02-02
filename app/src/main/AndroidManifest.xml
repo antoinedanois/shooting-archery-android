@@ -34,13 +34,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
-        <activity
-            android:name=".ConfigNPlayersActivity"
-            android:label="@string/title_activity_config_nplayers" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
-        </activity>
+        <!--<activity-->
+            <!--android:name=".ConfigNPlayersActivity"-->
+            <!--android:label="@string/title_activity_config_nplayers" >-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />-->
+        <!--</activity>-->
         <activity
             android:name=".MultiplayerSelectionActivity"
             android:label="@string/title_activity_multiplayer_selection" >
