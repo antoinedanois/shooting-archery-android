@@ -56,7 +56,8 @@ public class DBHelper extends SQLiteOpenHelper {
 				"comp_entrain TEXT(1) NOT NULL  DEFAULT 'E'," +
 				"ext_int TEXT(1) NOT NULL  DEFAULT 'E'," +
 				"idDiametre INTEGER NOT NULL  REFERENCES Diametre (idDiametre)," +
-                "NomArc TEXT(20) NOT NULL" +
+                "NomArc TEXT(20) NOT NULL ," +
+				"joueurs TEXT NOT NULL" +
 				");");
 		
 		arg0.execSQL("CREATE TABLE Tirer (" +
@@ -252,7 +253,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		List<String> listUsers = new ArrayList<String>();
 		
 		for (Utilisateur user : getUtilisateurs()) {
-			listUsers.add(user.getNom() + " " + user.getPrenom());
+			listUsers.add(user.getPrenom() + " " + user.getNom());
 		}
 		
 		return listUsers;
@@ -315,6 +316,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		values.put("ext_int", ((partie.isExterieur())?"E":"I"));
 		values.put("idDiametre",partie.getIdDiametre());
         values.put("NomArc",partie.getNomArc());
+		values.put("joueurs",partie.getJoueurs());
 		
 		int idPartie = Integer.valueOf(String.valueOf(db.insert("Partie", null, values)));
 		db.close();
@@ -383,7 +385,9 @@ public class DBHelper extends SQLiteOpenHelper {
 					(cursor.getString(9).equals("C")?true:false),
 					(cursor.getString(10).equals("E")?true:false),
 					cursor.getInt(11),
-                    cursor.getString(12));
+                    cursor.getString(12),
+					cursor.getString(13)
+			);
 		}
 		
 		cursor.close();

@@ -125,8 +125,17 @@
             android:label="@string/title_activity_manual_score" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.iutbmteprow.shootingarchery.InGameActivity" />
+                android:value="com.iutbmteprow.shootingarchery.InGameMultiActivity" />
         </activity>
+
+        <activity
+            android:name=".ManualScoreActivityv2"
+            android:label="@string/title_activity_manual_score" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iutbmteprow.shootingarchery.InGameMultiActivity" />
+        </activity>
+
         <activity
             android:name=".ManualScoreCampActivity"
             android:label="@string/title_activity_manual_score" >

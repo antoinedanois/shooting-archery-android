@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import com.iutbmteprow.shootingarchery.dbman.DBHelper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +28,12 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
     boolean exterieur;
     SharedPreferences preferences;
     private DBHelper db;
+    int currentPlayer;
+    int currentUser;
+    int nPlayers;
+
+    int nextNoManche;
+    int nextNoVolee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +42,19 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
 
         preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
 
-        if(preferences.getBoolean("p1ImageTrispot", true)){
+        currentUser=preferences.getInt("currentPlayer", 0);
+        currentPlayer=currentUser+1;
+        nPlayers=preferences.getInt("nPlayers",1);
+
+        if(preferences.getBoolean("p"+currentPlayer+"ImageTrispot", true)){
             ((View) findViewById(R.id.five_row)).setVisibility(View.GONE);
             ((View) findViewById(R.id.four_row)).setVisibility(View.GONE);
             ((View) findViewById(R.id.manscore_buttonScore5)).setVisibility(View.GONE);
         }
 
         db = new DBHelper(this);
+
+        initPlayer();
 
         initScoreBtns();
         initScoreViews();
@@ -49,9 +63,13 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
         btValidateVolees.setOnClickListener(validateVolees);
     }
 
+    private void initPlayer(){
+        setTitle(preferences.getString("NomUtilisateur" + currentUser, null));
+    }
+
     private void initScoreViews() {
         preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
-        boolFleches = preferences.getBoolean("p1RadioFleche3", true);
+        boolFleches = preferences.getBoolean("p" + currentPlayer + "RadioFleche3", true);
 
         editTexts = new ArrayList<EditText>();
         editTexts.add((EditText) findViewById(R.id.manscore_edittext1));
@@ -122,7 +140,7 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
                 }
             }
 
-            int idPartie = preferences.getInt("p1idPartie", 0);
+            int idPartie = preferences.getInt("p"+currentPlayer+"idPartie", 0);
             int noManche = getIntent().getIntExtra("noManche", 0);
             int noVolee = getIntent().getIntExtra("noVolee", 0);
 
@@ -139,7 +157,7 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
                 }
                 db.addTirer(idPartie, noManche, noVolee, score, i+1);
             }
-            getSharedPreferences("partie", Context.MODE_PRIVATE).edit().putInt("currentVolee", ++noVolee).commit();
+            getSharedPreferences("partie", Context.MODE_PRIVATE).edit().putInt("p"+currentPlayer+"currentVolee", ++noVolee).commit();
 
             //Incrementer les vol�es en entrainement
             boolean competition = getIntent().getBooleanExtra("competition", true);
@@ -147,9 +165,31 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
                 db.incVoleesPartie(idPartie);
 
             setResult(RESULT_OK);
-            finish();
+            if(currentPlayer<nPlayers){
+                loadNextPlayer();
+
+                Intent intent = new Intent(getApplicationContext().getApplicationContext(), ManualScoreActivityv2.class);
+                intent.putExtra("noVolee", nextNoVolee);
+                intent.putExtra("noManche", nextNoManche);
+                intent.putExtra("exterieur", getIntent().getBooleanExtra("exterieur",false));
+                intent.putExtra("competition", competition);
+                startActivityForResult(intent, 1);
+                finish();
+            } else{
+                finish();
+            }
         }
     };
+
+    private void loadNextPlayer(){
+        currentUser+=1;
+        currentPlayer+=1;
+        nextNoVolee=preferences.getInt("p"+currentPlayer+"currentVolee",0);
+        nextNoManche=preferences.getInt("p"+currentPlayer+"currentManche",0);
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putInt("currentPlayer",currentUser);
+        editor.commit();
+    }
 
     @Override
     public void onFocusChange(View v, boolean hasFocus){

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -323,6 +324,7 @@ public class IndividualConfigActivity extends Activity {
 
         editor.putInt("p"+lastPlayer+"currentManche", 1);
         editor.putInt("p"+lastPlayer+"currentVolee", 1);
+        Log.e("dev","player: "+lastPlayer+" set.");
 
         //Choix cible
         editor.putBoolean("p"+lastPlayer+"ImageClassique",classiqueRadio.isChecked());
@@ -354,6 +356,14 @@ public class IndividualConfigActivity extends Activity {
 
     private void savePartie() {
         SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
+        String joueurs="";
+        if(sp.getInt("nPlayers",1)>1){
+            for(int i=0;i<sp.getInt("nPlayers",1);i++){
+                joueurs+=sp.getInt("idUtilisateur"+i,1)+",";
+            }
+            joueurs=joueurs.substring(0,joueurs.length()-1);
+        }
+
         int idPartie = new DBHelper(this).addPartie(new Partie(0, //idPartie
                 sp.getInt("idUtilisateur"+lastPlayer, 0), //idUtilisateur
                 false, //partieFinie
@@ -366,7 +376,9 @@ public class IndividualConfigActivity extends Activity {
                 sp.getBoolean("RadioCompetition", false),//competition
                 sp.getBoolean("RadioExterieur", true),//exterieur
                 sp.getInt("p"+lastPlayer+"idDiametre",0),
-                sp.getString("p"+lastPlayer+"NomArc", "test")) //nom arc
+                sp.getString("p"+lastPlayer+"NomArc", "test"),
+                joueurs
+        ) //nom arc
         );
         sp.edit().putInt("p"+lastPlayer+"idPartie", idPartie).commit();
     }

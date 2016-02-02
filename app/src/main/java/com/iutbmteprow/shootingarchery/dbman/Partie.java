@@ -18,11 +18,12 @@ public class Partie {
 	private boolean competition;
 	private int idDiametre;
     private String NomArc;
+	private String joueurs;
 	
 	public Partie(int idPartie, int idUtilisateur, boolean partieFini,
 			int idCible, int distanceCible,  Date datePartie,
 			int nbManches, int nbVolees, int nbFleches, 
-			boolean comp_entrain, boolean ext_int, int idDiametre, String NomArc) {
+			boolean comp_entrain, boolean ext_int, int idDiametre, String NomArc, String joueurs) {
 		super();
 		this.idPartie = idPartie;
 		this.idUtilisateur = idUtilisateur;
@@ -37,6 +38,7 @@ public class Partie {
 		this.competition = comp_entrain;
 		this.idDiametre = idDiametre;
         this.NomArc = NomArc;
+		this.joueurs = joueurs;
 	}
 
 	public int getIdPartie() {
@@ -120,5 +122,20 @@ public class Partie {
     public String getNomArc() {
         return NomArc;
     }
-	
+
+	public String getJoueurs() {
+		return joueurs;
+	}
+
+	public void setJoueurs(String joueurs) {
+		this.joueurs = joueurs;
+	}
+
+	public void addJoueur(String joueur){
+		if(this.joueurs!=null){
+			this.joueurs+=","+joueur;
+		} else{
+			this.joueurs=joueur;
+		}
+	}
 }

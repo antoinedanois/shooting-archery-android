@@ -60,6 +60,7 @@ public class InGameMultiActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game_multi);
 
+        db = new DBHelper(this);
         loadAttributes();
         readPreferences();
 
@@ -71,7 +72,23 @@ public class InGameMultiActivity extends Activity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                actualPlayerNumber=position+1;
+                Log.e("dev","actual player: "+actualPlayerNumber);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
 
     }
@@ -86,15 +103,20 @@ public class InGameMultiActivity extends Activity {
         actualPlayerID = sp.getInt("idUtilisateur" + actualPlayerNumber, 0);
         actualPlayerNom= sp.getString("NomUtilisateur" + actualPlayerNumber, null);
 
-        //readActualPlayerData();
+        SharedPreferences.Editor editor =sp.edit();
+        editor.putInt("currentPlayer",0);
+        editor.commit();
+        readActualPlayerData();
     }
 
     private void readActualPlayerData(){
         SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
-        noVolee = sp.getInt("p0currentVolee", 0);
-        noManche = sp.getInt("p0currentManche", 0);
+        noVolee = sp.getInt("p1currentVolee", 0);
+        noManche = sp.getInt("p1currentManche", 0);
+//        Log.e("p1p", "" + sp.getInt("p1idPartie", 0));
 
-        partie = db.getPartie(sp.getInt("p0idPartie", 0));
+        partie = db.getPartie(sp.getInt("p1idPartie", 0));
+
     }
 
     @Override
@@ -108,23 +130,23 @@ public class InGameMultiActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.action_photo:
-//                if (noVolee > partie.getNbVolees()) {
-//                    if (noManche == partie.getNbManches()) {
-//                        showTooManyPlayError();
-//                        break;
-//                    } else {
-//                        noManche++;
-//                        noVolee = 1;
-//                    }
-//                }
-//                Intent intent = new Intent(this, ManualScoreActivityv2.class);
-//                intent.putExtra("noVolee", noVolee);
-//                intent.putExtra("noManche", noManche);
-//                intent.putExtra("exterieur", partie.isExterieur());
-//                intent.putExtra("competition", partie.isCompetition());
-//                startActivityForResult(intent, 1);
-//                break;
+            case R.id.action_photo:
+                if (noVolee > partie.getNbVolees()) {
+                    if (noManche == partie.getNbManches()) {
+                        showTooManyPlayError();
+                        break;
+                    } else {
+                        noManche++;
+                        noVolee = 1;
+                    }
+                }
+                Intent intent = new Intent(this, ManualScoreActivityv2.class);
+                intent.putExtra("noVolee", noVolee);
+                intent.putExtra("noManche", noManche);
+                intent.putExtra("exterieur", partie.isExterieur());
+                intent.putExtra("competition", partie.isCompetition());
+                startActivityForResult(intent, 1);
+                break;
 //            case R.id.action_finseance:
 //                terminerPartie();
 //                break;
@@ -161,6 +183,7 @@ public class InGameMultiActivity extends Activity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             actualPlayerNumber=position;
+
             position+=1;
 
             actualPlayerNom=getName(getID(actualPlayerNumber));
@@ -176,7 +199,7 @@ public class InGameMultiActivity extends Activity {
         private String getName(int id){
             db=new DBHelper(getApplicationContext());
             Utilisateur player=db.getUtilisateur(id);
-            return player.getNom()+" "+player.getPrenom();
+            return player.getPrenom()+" "+player.getNom();
         }
 
         @Override
@@ -234,7 +257,7 @@ public class InGameMultiActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_in_game_multi, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.playerName);
 //            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            textView.setText("Playing: "+getArguments().getString(ARG_PLAYER_NAME));
+            textView.setText(getArguments().getString(ARG_PLAYER_NAME));
             return rootView;
         }
     }

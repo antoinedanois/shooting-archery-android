@@ -66,7 +66,7 @@ public class PlayerSelectionFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String[] userName = playerSpinner.getSelectedItem().toString().split(" ");
-                Utilisateur curUser = db.getUtilisateurFromName(userName[0], userName[1]);
+                Utilisateur curUser = db.getUtilisateurFromName(userName[1], userName[0]);
 
                 try {
                     gradeU.setText(curUser.getGrade());
@@ -95,7 +95,7 @@ public class PlayerSelectionFragment extends Fragment {
         String userSpinner = playerSpinner.getSelectedItem().toString();
 
         String[] nomUtil = userSpinner.split(" ");
-        editor.putInt("idUtilisateur"+noPlayer, db.getUtilisateurFromName(nomUtil[0], nomUtil[1]).getId());
+        editor.putInt("idUtilisateur"+noPlayer, db.getUtilisateurFromName(nomUtil[1], nomUtil[0]).getId());
 
         editor.commit();
     }
