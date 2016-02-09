@@ -182,6 +182,13 @@
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
         <activity
+            android:name=".ViewGameActivityv2"
+            android:label="@string/title_activity_view_game" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
+        </activity>
+        <activity
             android:name=".ViewGameActivityCamp"
             android:label="@string/title_activity_view_game" >
             <meta-data

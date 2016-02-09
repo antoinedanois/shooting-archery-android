@@ -79,7 +79,7 @@ public class SortResultActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         if (parties.get(position).getId() != 0){
             if (parties.get(position).getTypePartie() == "Classique"){
-                Intent intent = new Intent(this,ViewGameActivity.class);
+                Intent intent = new Intent(this,ViewGameActivityv2.class);
                 intent.putExtra("idPartie", parties.get(position).getId());
                 startActivity(intent);
             }

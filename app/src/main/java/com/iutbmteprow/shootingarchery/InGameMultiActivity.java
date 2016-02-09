@@ -8,11 +8,17 @@ import android.app.FragmentTransaction;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +48,7 @@ public class InGameMultiActivity extends Activity {
     private int noManche;
     private Partie partie;
     List<ScoreTableFragmentv2> tables;
+    private int notifId;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -69,6 +76,12 @@ public class InGameMultiActivity extends Activity {
         readPreferences();
         tables=new ArrayList<>();
 
+        createTabs();
+
+
+    }
+
+    private void createTabs(){
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -85,8 +98,8 @@ public class InGameMultiActivity extends Activity {
 
             @Override
             public void onPageSelected(int position) {
-                actualPlayerNumber=position+1;
-                Log.e("dev","actual player: "+actualPlayerNumber);
+                actualPlayerNumber = position + 1;
+                Log.e("dev", "actual player: " + actualPlayerNumber);
 
             }
 
@@ -95,8 +108,6 @@ public class InGameMultiActivity extends Activity {
 
             }
         });
-
-
     }
 
     private void loadAttributes(){
@@ -146,6 +157,7 @@ public class InGameMultiActivity extends Activity {
                         noVolee = 1;
                     }
                 }
+                readActualPlayerData(); //notest
                 Intent intent = new Intent(this, ManualScoreActivityv2.class);
                 intent.putExtra("noVolee", noVolee);
                 intent.putExtra("noManche", noManche);
@@ -153,11 +165,93 @@ public class InGameMultiActivity extends Activity {
                 intent.putExtra("competition", partie.isCompetition());
                 startActivityForResult(intent, 1);
                 break;
-//            case R.id.action_finseance:
-//                terminerPartie();
-//                break;
+            case R.id.action_finseance:
+                terminerPartie();
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.exit_question)
+                .setMessage(R.string.sureToQuit)
+                .setIcon(R.drawable.action_help)
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        db.supprimerPartie(partie.getIdPartie());
+                        goToAccueil();
+                    }
+                }).create().show();
+    }
+
+    private void terminerPartie() {
+        if (noVolee == 1) {
+            onBackPressed();
+            return;
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.exit_question)
+                .setMessage(R.string.confirmGameEnd)
+                .setIcon(R.drawable.action_help)
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        for (int p = 1; p <= nPlayers;p++) {
+                            SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
+                            partie = db.getPartie(sp.getInt("p"+p+"idPartie", 0));
+
+                            db.terminerPartie(partie.getIdPartie());
+                            if (!partie.isCompetition()) {
+                                db.normalizeVolees(partie.getIdPartie());
+                            }
+                        }
+                        goToAccueil();
+                    }
+                }).create().show();
+    }
+
+    private void goToAccueil() {
+        //Effacer les preferences
+        getSharedPreferences("partie", Context.MODE_PRIVATE).edit().clear().commit();
+        //Tuer la notification
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(notifId);
+
+        //Effacer les parametre
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        preferences.edit().clear().commit();
+
+        //Revenir a l'accueil en vidant la pile d'appel
+        Intent intent = new Intent(InGameMultiActivity.this, AccueilActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private void makeNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.target)
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText(getString(R.string.notif_txt));
+        Intent resultIntent = new Intent(this, InGameMultiActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(InGameMultiActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notif = mBuilder.build();
+        notif.flags = Notification.FLAG_ONGOING_EVENT;
+        mNotificationManager.notify(notifId, notif);
     }
 
     private void showTooManyPlayError() {
@@ -178,8 +272,9 @@ public class InGameMultiActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                createTabs();
                 for(int i=0;i<tables.size();i++){
-                    tables.get(i).refresh();
+                        tables.get(i).refresh();
                 }
             }
         }

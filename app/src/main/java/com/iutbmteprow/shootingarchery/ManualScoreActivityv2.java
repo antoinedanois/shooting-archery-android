@@ -173,11 +173,12 @@ public class ManualScoreActivityv2 extends Activity implements OnFocusChangeList
                 intent.putExtra("noManche", nextNoManche);
                 intent.putExtra("exterieur", getIntent().getBooleanExtra("exterieur",false));
                 intent.putExtra("competition", competition);
+                Log.e("player "+currentPlayer, "set, volee " + nextNoVolee + ", manche " + nextNoManche);
                 startActivityForResult(intent, 1);
                 finish();
             } else{
                 SharedPreferences.Editor editor=preferences.edit();
-                editor.putInt("currentPlayer",0);
+                editor.putInt("currentPlayer", 0);
                 Log.e("player 0:","set");
                 editor.commit();
                 finish();

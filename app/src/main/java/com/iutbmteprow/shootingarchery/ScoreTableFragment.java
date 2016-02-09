@@ -46,7 +46,7 @@ public class ScoreTableFragment extends Fragment {
 		result.setOrientation(LinearLayout.VERTICAL);
 		
 		Bundle arguments = getArguments();
-		int idPartie = arguments.getInt("p1idPartie");
+		int idPartie = arguments.getInt("idPartie");
 		expandable = arguments.getBoolean("expandable", true);
 		
 		db = new DBHelper(getActivity());

@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 public class ScoreTableFragmentv2 extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    public static final String ARG_SECTION_NUMBER = "section_number";
 
     View topView;
     List<List<View>> manches;
@@ -66,8 +66,12 @@ public class ScoreTableFragmentv2 extends Fragment {
 
         currentPlayer=getArguments().getInt(ARG_SECTION_NUMBER)-1;
 
-        SharedPreferences sp = getActivity().getSharedPreferences("partie", Context.MODE_PRIVATE);
-        int idPartie =sp.getInt("p" + currentPlayer + "idPartie",0);
+        int idPartie = getArguments().getInt("idPartie");
+
+        if(!(idPartie>0)) {
+            SharedPreferences sp = getActivity().getSharedPreferences("partie", Context.MODE_PRIVATE);
+            idPartie = sp.getInt("p" + currentPlayer + "idPartie", 0);
+        }
 
         db = new DBHelper(getActivity());
         partie = db.getPartie(idPartie);
@@ -220,6 +224,8 @@ public class ScoreTableFragmentv2 extends Fragment {
 
         for (int i=0;i<tirs.size();i++) {
             Tirer tirer = tirs.get(i);
+            Log.e("tirs.size ",""+tirs.size());
+            Log.e("tirer","IDPartie: "+tirer.getIdPartie()+", NoManche "+tirer.getNoManche()+" Volee "+tirer.getNbVolee()+" fleche "+tirer.getOrderLancer());
             View ligne = manches.get(tirer.getNoManche() - 1).get(tirer.getNbVolee() - 1);
             TextView tx = (TextView) ligne.findViewById(getId(tirer.getOrderLancer()));
             tx.setText(getScoreString(tirer.getScore()));
