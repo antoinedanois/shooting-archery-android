@@ -1,17 +1,35 @@
 <!-- add scroll -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory android:title="@string/data">
-        <Preference android:title="@string/delete_user" android:key="delete_user_pref"/>
-        <Preference android:title="@string/edit_user" android:key="modify_user_pref"/>
-        <Preference android:title="@string/reset_db" android:key="reset_db"/>
+        <Preference
+            android:title="@string/delete_user"
+            android:key="delete_user_pref" />
+        <Preference
+            android:title="@string/edit_user"
+            android:key="modify_user_pref" />
+        <Preference
+            android:title="@string/reset_db"
+            android:key="reset_db" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Partie">
-        <ListPreference android:entryValues="@array/colonnes_10_10p_values" android:entries="@array/colonnes_10_10p" android:title="Colonnes 10 et 9" android:key="col_1010p" android:defaultValue="per_row"/>
+        <ListPreference
+            android:entryValues="@array/colonnes_10_10p_values"
+            android:entries="@array/colonnes_10_10p"
+            android:title="Colonnes 10 et 9"
+            android:key="col_1010p"
+            android:defaultValue="per_row" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Serveur web">
+        <Preference
+            android:title="@string/lien_web"
+            android:key="edit_web_link" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/about">
-        <Preference android:title="@string/app_name" android:key="about_pref"/>
+        <Preference
+            android:title="@string/app_name"
+            android:key="about_pref" />
     </PreferenceCategory>
-    
-    
+
+
 </PreferenceScreen>

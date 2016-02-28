@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * Created by Geoffrey on 10/02/2015.
@@ -22,8 +21,8 @@ public class ConseilTirActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arc_tir);
-        btn_echauf = (Button)  findViewById(R.id.btn_tir_echauf);
-        btn_secu = (Button)  findViewById(R.id.btn_tir_secu);
+        btn_echauf = (Button) findViewById(R.id.btn_tir_echauf);
+        btn_secu = (Button) findViewById(R.id.btn_tir_secu);
         btn_echauf.setOnClickListener(handleClick);
         btn_secu.setOnClickListener(handleClick);
         setupActionBar();
@@ -33,19 +32,17 @@ public class ConseilTirActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_tir_echauf:
-                    if( findViewById(R.id.layout_echauf).getVisibility()== View.VISIBLE){
+                    if (findViewById(R.id.layout_echauf).getVisibility() == View.VISIBLE) {
                         ((LinearLayout) findViewById(R.id.layout_echauf)).setVisibility(View.GONE);
-                    }
-                    else if(findViewById(R.id.layout_echauf).getVisibility()== View.GONE){
+                    } else if (findViewById(R.id.layout_echauf).getVisibility() == View.GONE) {
                         ((LinearLayout) findViewById(R.id.layout_echauf)).setVisibility(View.VISIBLE);
                     }
 
                     break;
                 case R.id.btn_tir_secu:
-                    if( findViewById(R.id.layout_secu).getVisibility()== View.VISIBLE){
+                    if (findViewById(R.id.layout_secu).getVisibility() == View.VISIBLE) {
                         ((LinearLayout) findViewById(R.id.layout_secu)).setVisibility(View.GONE);
-                    }
-                    else if(findViewById(R.id.layout_secu).getVisibility()== View.GONE){
+                    } else if (findViewById(R.id.layout_secu).getVisibility() == View.GONE) {
                         ((LinearLayout) findViewById(R.id.layout_secu)).setVisibility(View.VISIBLE);
                     }
                     break;

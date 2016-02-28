@@ -28,21 +28,48 @@ public class Graduation {
     public int getIdGraduation() {
         return idGraduation;
     }
+
     public void setIdGraduation(int idGraduation) {
         this.idGraduation = idGraduation;
     }
+
     public int getDistance() {
         return Distance;
     }
+
     public void setDistance(int Distance) {
         this.Distance = Distance;
     }
-    public String getRemarque(){return Remarque;}
-    public void setRemarque(String Remarque){this.Remarque = Remarque; }
-    public double getHorizontal() {return horizontal;}
-    public void setHorizontal(int horizontal) {this.horizontal = horizontal;}
-    public double getVertical() {return vertical;}
-    public void setVertical(int vertical) {this.vertical = vertical;}
-    public double getProfondeur() {return profondeur;}
-    public void setProfondeur(int pro4) {this.profondeur = profondeur;}
+
+    public String getRemarque() {
+        return Remarque;
+    }
+
+    public void setRemarque(String Remarque) {
+        this.Remarque = Remarque;
+    }
+
+    public double getHorizontal() {
+        return horizontal;
+    }
+
+    public void setHorizontal(int horizontal) {
+        this.horizontal = horizontal;
+    }
+
+    public double getVertical() {
+        return vertical;
+    }
+
+    public void setVertical(int vertical) {
+        this.vertical = vertical;
+    }
+
+    public double getProfondeur() {
+        return profondeur;
+    }
+
+    public void setProfondeur(int pro4) {
+        this.profondeur = profondeur;
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
     android:layout_marginLeft="10dp">
@@ -17,23 +18,27 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:id="@+id/layout_cons_scroll"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/titre_arc_long"
                 android:id="@+id/textView12" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_margin="@dimen/size10"
@@ -68,6 +73,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_margin="@dimen/size10"
@@ -76,14 +82,13 @@
                     android:id="@+id/txt_arc_classique"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1.20"/>
+                    android:layout_weight="1.20" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/arclassique"
-                    android:layout_weight="0.8"
-                    />
+                    android:layout_weight="0.8" />
             </LinearLayout>
 
             <TextView
@@ -98,6 +103,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_margin="@dimen/size10"
@@ -106,13 +112,13 @@
                     android:id="@+id/textView16"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1.15" />
+
                 <ImageView
                     android:layout_width="wrap_content"
 
                     android:layout_height="match_parent"
                     android:src="@drawable/pouli"
-                    android:layout_weight="0.8"
-                    />
+                    android:layout_weight="0.8" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

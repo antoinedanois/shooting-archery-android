@@ -61,9 +61,9 @@ public class IndividualConfigActivity extends Activity {
         readPreferences();
     }
 
-    private void loadAttributes(){
+    private void loadAttributes() {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
-        if (preferences.getBoolean("RadioEntrainement", true)){
+        if (preferences.getBoolean("RadioEntrainement", true)) {
             isEntrainement = true;
             ((View) findViewById(R.id.config3_manches_layout)).setVisibility(View.GONE);
             ((View) findViewById(R.id.config3_volees_layout)).setVisibility(View.GONE);
@@ -75,11 +75,11 @@ public class IndividualConfigActivity extends Activity {
 
         CompoundButton.OnCheckedChangeListener occl = new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked)
                     return;
                 updateDiametres((((View) buttonView).getId() == R.id.config2_radioCibleBlason));
-                switch(buttonView.getId()) {
+                switch (buttonView.getId()) {
                     case R.id.config2_radioCibleBlason: {
                         contentTaille.setVisibility(View.VISIBLE);
                         break;
@@ -94,8 +94,8 @@ public class IndividualConfigActivity extends Activity {
             }
         };
 
-        classiqueRadio = (RadioButton)findViewById(R.id.config2_radioCibleBlason);
-        trispotRadio = (RadioButton)findViewById(R.id.config2_radioCibleTrispot);
+        classiqueRadio = (RadioButton) findViewById(R.id.config2_radioCibleBlason);
+        trispotRadio = (RadioButton) findViewById(R.id.config2_radioCibleTrispot);
         classiqueRadio.setOnCheckedChangeListener(occl);
         trispotRadio.setOnCheckedChangeListener(occl);
 
@@ -110,7 +110,7 @@ public class IndividualConfigActivity extends Activity {
         lastSeekBarVolee = (ImageView) findViewById(R.id.config3_prec_volee);
         nextSeekBarVolee = (ImageView) findViewById(R.id.config3_suiv_volee);
 
-        txtActualPlayer=(TextView)findViewById(R.id.txtJoueurCourante);
+        txtActualPlayer = (TextView) findViewById(R.id.txtJoueurCourante);
 
         setupSeekBar();
 
@@ -118,7 +118,7 @@ public class IndividualConfigActivity extends Activity {
 
     private void updateDiametres(boolean isBlason) {
         listDiametre = null;
-        listDiametre = db.getDiametres((isBlason)?1:2);
+        listDiametre = db.getDiametres((isBlason) ? 1 : 2);
         ArrayList<String> listStringDiametre = new ArrayList<String>();
         for (Diametre d : listDiametre) {
             listStringDiametre.add(String.valueOf(d.getDiametre()) + " cm");
@@ -129,7 +129,7 @@ public class IndividualConfigActivity extends Activity {
         spinner.setAdapter(adapt);
     }
 
-    private void setupSeekBar(){
+    private void setupSeekBar() {
         //SEEKBAR VOLEES
         volees.setMax(50);
         //lastSeekBarVolee button
@@ -137,7 +137,7 @@ public class IndividualConfigActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                volees.setProgress(volees.getProgress()-1);
+                volees.setProgress(volees.getProgress() - 1);
 
             }
         });
@@ -146,13 +146,13 @@ public class IndividualConfigActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                volees.setProgress(volees.getProgress()+1);
+                volees.setProgress(volees.getProgress() + 1);
 
             }
         });
 
         /*
-		 * SEEKBAR DES VOLEES
+         * SEEKBAR DES VOLEES
 		 */
         volees.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -174,8 +174,8 @@ public class IndividualConfigActivity extends Activity {
 
             }
         });
-		/*
-		 * FIN SEEKBAR DES VOLEES
+        /*
+         * FIN SEEKBAR DES VOLEES
 		 */
 
         /*
@@ -210,59 +210,58 @@ public class IndividualConfigActivity extends Activity {
     private void readPreferences() {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
 
-        nPlayers=preferences.getInt("nPlayers", 0);
-        lastPlayer=preferences.getInt("lastPlayer",0);
+        nPlayers = preferences.getInt("nPlayers", 0);
+        lastPlayer = preferences.getInt("lastPlayer", 0);
 
-        txtActualPlayer.setText((lastPlayer+1)+" de "+nPlayers);
+        txtActualPlayer.setText((lastPlayer + 1) + " de " + nPlayers);
 
         //lecture choix nombre de fleches
-        if(preferences.getBoolean("RadioFleche3", false))
+        if (preferences.getBoolean("RadioFleche3", false))
             fleche3.setChecked(true);
-        if(preferences.getBoolean("RadioFleche6", false))
+        if (preferences.getBoolean("RadioFleche6", false))
             fleche6.setChecked(true);
         //fin lecture choix nombre de fl�che
 
-        if(preferences.getBoolean("RadioCibleBlason", false)){
+        if (preferences.getBoolean("RadioCibleBlason", false)) {
             trispotRadio.setChecked(true);
         }
-        if(preferences.getBoolean("RadioCibleTrispot", false)){
+        if (preferences.getBoolean("RadioCibleTrispot", false)) {
             trispotRadio.setChecked(true);
         }
 
         //lecture vol�es
-        String TextVolee=preferences.getString("textProgressVolee", "0");
+        String TextVolee = preferences.getString("textProgressVolee", "0");
         textProgressVolees.setText(TextVolee);
-        int SeekBarVolee=preferences.getInt("progressVolee", 0);
+        int SeekBarVolee = preferences.getInt("progressVolee", 0);
         volees.setProgress(SeekBarVolee);
         //fin lecture vol�es
 
         //lecture manches
-        String TextManche = preferences.getString("textProgressManches","0");
+        String TextManche = preferences.getString("textProgressManches", "0");
         textProgressManches.setText(TextManche);
         int SeekBarManche = preferences.getInt("progressManche", 0);
         manches.setProgress(SeekBarManche);
         //fin lecture manches
     }
 
-    private boolean checkInputs(){
-        if(progressChangedVolees == 0 && !isEntrainement){
-            makeAlert(getString(R.string.erreur),getString(R.string.volees_error));
+    private boolean checkInputs() {
+        if (progressChangedVolees == 0 && !isEntrainement) {
+            makeAlert(getString(R.string.erreur), getString(R.string.volees_error));
             return false;
         }
         if (progressChangedManches == 0 && !isEntrainement) {
-            makeAlert(getString(R.string.erreur),getString(R.string.manches_error));
+            makeAlert(getString(R.string.erreur), getString(R.string.manches_error));
             return false;
         }
-        if(!fleche3.isChecked() && !fleche6.isChecked()){
-            makeAlert(getString(R.string.erreur),getString(R.string.nbfleche_error));
+        if (!fleche3.isChecked() && !fleche6.isChecked()) {
+            makeAlert(getString(R.string.erreur), getString(R.string.nbfleche_error));
             return false;
         }
 
         return true;
     }
 
-    private void makeAlert(String title,String message)
-    {
+    private void makeAlert(String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.error));
         alertDialog.setMessage(message);
@@ -275,34 +274,30 @@ public class IndividualConfigActivity extends Activity {
         alertDialog.show();
     }
 
-    private void setupActionBar()
-    {
+    private void setupActionBar() {
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.config, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.action_next:
                 //Erreur de saisie ?
                 if (!checkInputs())
                     return true;
 
                 savePreferences();
-                if(lastPlayer==nPlayers){
+                if (lastPlayer == nPlayers) {
                     Intent intent = new Intent(this, InGameMultiActivity.class);
                     startActivity(intent);
-                } else if(lastPlayer<nPlayers){
+                } else if (lastPlayer < nPlayers) {
                     Intent intent = new Intent(this, IndividualConfigActivity.class);
                     startActivity(intent);
                 }
@@ -319,38 +314,38 @@ public class IndividualConfigActivity extends Activity {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        lastPlayer+=1;
-        editor.putInt("lastPlayer",lastPlayer);
+        lastPlayer += 1;
+        editor.putInt("lastPlayer", lastPlayer);
 
         //Taille Cible
-        editor.putInt("p"+lastPlayer+"idDiametre", listDiametre.get(spinner.getSelectedItemPosition()).getIdDiametre());
+        editor.putInt("p" + lastPlayer + "idDiametre", listDiametre.get(spinner.getSelectedItemPosition()).getIdDiametre());
 
-        editor.putInt("p"+lastPlayer+"currentManche", 1);
-        editor.putInt("p"+lastPlayer+"currentVolee", 1);
-        Log.e("dev","player: "+lastPlayer+" set.");
+        editor.putInt("p" + lastPlayer + "currentManche", 1);
+        editor.putInt("p" + lastPlayer + "currentVolee", 1);
+        Log.e("dev", "player: " + lastPlayer + " set.");
 
         //Choix cible
-        editor.putBoolean("p"+lastPlayer+"ImageClassique",classiqueRadio.isChecked());
-        editor.putBoolean("p"+lastPlayer+"ImageTrispot", trispotRadio.isChecked());
+        editor.putBoolean("p" + lastPlayer + "ImageClassique", classiqueRadio.isChecked());
+        editor.putBoolean("p" + lastPlayer + "ImageTrispot", trispotRadio.isChecked());
 
-        editor.putInt("p"+lastPlayer+"currentManche", 1);
-        editor.putInt("p"+lastPlayer+"currentVolee", 1);
+        editor.putInt("p" + lastPlayer + "currentManche", 1);
+        editor.putInt("p" + lastPlayer + "currentVolee", 1);
 
         //choix nombre de fl�ches
-        editor.putBoolean("p"+lastPlayer+"RadioFleche3", fleche3.isChecked());
-        editor.putBoolean("p"+lastPlayer+"RadioFleche6", fleche6.isChecked());
+        editor.putBoolean("p" + lastPlayer + "RadioFleche3", fleche3.isChecked());
+        editor.putBoolean("p" + lastPlayer + "RadioFleche6", fleche6.isChecked());
         //fin choix nombre de fl�che
 
         //choix nombre vol�es
-        editor.putString("p"+lastPlayer+"textProgressVolee", textProgressVolees.getText().toString());
-        int progressVolee=volees.getProgress();
-        editor.putInt("p"+lastPlayer+"progressVolee", (isEntrainement) ? 1 : progressVolee);
+        editor.putString("p" + lastPlayer + "textProgressVolee", textProgressVolees.getText().toString());
+        int progressVolee = volees.getProgress();
+        editor.putInt("p" + lastPlayer + "progressVolee", (isEntrainement) ? 1 : progressVolee);
         //fin choix nombre vol�es
 
         //choix nombre manches
-        editor.putString("p"+lastPlayer+"textProgressManches", textProgressManches.getText().toString());
+        editor.putString("p" + lastPlayer + "textProgressManches", textProgressManches.getText().toString());
         int progressManche = manches.getProgress();
-        editor.putInt("p"+lastPlayer+"progressManche", (isEntrainement)?1:progressManche);
+        editor.putInt("p" + lastPlayer + "progressManche", (isEntrainement) ? 1 : progressManche);
         //fin choix nombre de manches.
 
         editor.commit();
@@ -359,31 +354,31 @@ public class IndividualConfigActivity extends Activity {
 
     private void savePartie() {
         SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
-        String joueurs="";
-        if(sp.getInt("nPlayers",1)>1){
-            for(int i=0;i<sp.getInt("nPlayers",1);i++){
-                joueurs+=sp.getInt("idUtilisateur"+i,1)+",";
+        String joueurs = "";
+        if (sp.getInt("nPlayers", 1) > 1) {
+            for (int i = 0; i < sp.getInt("nPlayers", 1); i++) {
+                joueurs += sp.getInt("idUtilisateur" + i, 1) + ",";
             }
-            joueurs=joueurs.substring(0,joueurs.length()-1);
+            joueurs = joueurs.substring(0, joueurs.length() - 1);
         }
 
         int idPartie = new DBHelper(this).addPartie(new Partie(0, //idPartie
-                sp.getInt("idUtilisateur"+(lastPlayer-1), 0), //idUtilisateur
+                sp.getInt("idUtilisateur" + (lastPlayer - 1), 0), //idUtilisateur
                 false, //partieFinie
-                sp.getBoolean("p"+lastPlayer+"ImageClassique", true)?1:2, //idCible
+                sp.getBoolean("p" + lastPlayer + "ImageClassique", true) ? 1 : 2, //idCible
                 sp.getInt("progressDistance", 0), //distanceCible
                 new Date(), //datePartie
-                sp.getInt("p"+lastPlayer+"progressManche", 0), //nbManches
-                sp.getInt("p"+lastPlayer+"progressVolee", 0), //nbVolees
-                (sp.getBoolean("p"+lastPlayer+"RadioFleche3", true))?3:6, //nbFleches
+                sp.getInt("p" + lastPlayer + "progressManche", 0), //nbManches
+                sp.getInt("p" + lastPlayer + "progressVolee", 0), //nbVolees
+                (sp.getBoolean("p" + lastPlayer + "RadioFleche3", true)) ? 3 : 6, //nbFleches
                 sp.getBoolean("RadioCompetition", false),//competition
                 sp.getBoolean("RadioExterieur", true),//exterieur
-                sp.getInt("p"+lastPlayer+"idDiametre",0),
-                sp.getString("p"+lastPlayer+"NomArc", "test"),
+                sp.getInt("p" + lastPlayer + "idDiametre", 0),
+                sp.getString("p" + lastPlayer + "NomArc", "test"),
                 joueurs
         ) //nom arc
         );
-        sp.edit().putInt("p"+lastPlayer+"idPartie", idPartie).commit();
-        Log.e("p"+lastPlayer+"idPartie",""+idPartie);
+        sp.edit().putInt("p" + lastPlayer + "idPartie", idPartie).commit();
+        Log.e("p" + lastPlayer + "idPartie", "" + idPartie);
     }
 }

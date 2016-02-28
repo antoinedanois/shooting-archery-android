@@ -4,7 +4,7 @@
     <item>
         <shape>
             <solid android:color="@color/color_button" />
-            <size android:height="@dimen/size_60"/>
+            <size android:height="@dimen/size_60" />
 
         </shape>
     </item>

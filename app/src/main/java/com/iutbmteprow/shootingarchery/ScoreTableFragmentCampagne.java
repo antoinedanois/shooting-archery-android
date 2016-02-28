@@ -1,14 +1,5 @@
 package com.iutbmteprow.shootingarchery;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.iutbmteprow.shootingarchery.dbman.Campagne;
-import com.iutbmteprow.shootingarchery.dbman.DBHelper;
-import com.iutbmteprow.shootingarchery.dbman.Partie;
-import com.iutbmteprow.shootingarchery.dbman.Tirer;
-import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
-import com.iutbmteprow.shootingarchery.dbman.TirerCampagne;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -23,7 +14,14 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.iutbmteprow.shootingarchery.dbman.Campagne;
+import com.iutbmteprow.shootingarchery.dbman.DBHelper;
+import com.iutbmteprow.shootingarchery.dbman.TirerCampagne;
+import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScoreTableFragmentCampagne extends Fragment {
 
@@ -100,10 +98,10 @@ public class ScoreTableFragmentCampagne extends Fragment {
 
         hsv_layout.addView(ligne);
 
-        for (int i=1;i<=partie.getNbCibles();i++) {
+        for (int i = 1; i <= partie.getNbCibles(); i++) {
             View ligneTab = inflater.inflate(R.layout.fragment_mancherow_camp, container, false);
             ((TextView) ligneTab.findViewById(R.id.tabmid_nomanche)).setText(String.valueOf(i));
-            if (i%2 == 0) {
+            if (i % 2 == 0) {
                 ligneTab.setBackgroundColor(Color.LTGRAY);
             }
 
@@ -113,7 +111,7 @@ public class ScoreTableFragmentCampagne extends Fragment {
 
         result.addView(hsv);
 
-        View ligneTot = inflater.inflate(R.layout.fragment_manchebottom, container,false);
+        View ligneTot = inflater.inflate(R.layout.fragment_manchebottom, container, false);
         ((TextView) ligneTot.findViewById(R.id.nombre_cumul)).setText("Nombre de 6/5");
         if (!partie.isCompetition()) {
             ((TextView) ligneTot.findViewById(R.id.tabbot_string)).setText(R.string.total_entrainement);
@@ -137,7 +135,7 @@ public class ScoreTableFragmentCampagne extends Fragment {
         ((TextView) topView.findViewById(R.id.tabtop_username)).setText(nomUtilisateur);
 
         //Remplissage de l'entete cache
-        ((TextView) topView.findViewById(R.id.tabtop_comptEnt)).setText(partie.isCompetition()?"Compétition":"Entraînement");
+        ((TextView) topView.findViewById(R.id.tabtop_comptEnt)).setText(partie.isCompetition() ? "Compétition" : "Entraînement");
 
 
         long when = partie.getDatePartie().getTime();
@@ -156,9 +154,9 @@ public class ScoreTableFragmentCampagne extends Fragment {
             @Override
             public void onClick(View v) {
                 View extrainfo = topView.findViewById(R.id.tabtop_extrainfo);
-                extrainfo.setVisibility((extrainfo.getVisibility() == View.VISIBLE)?View.GONE:View.VISIBLE);
+                extrainfo.setVisibility((extrainfo.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
                 TextView expandtxt = (TextView) topView.findViewById(R.id.tabtop_expbtn);
-                expandtxt.setText((extrainfo.getVisibility() == View.VISIBLE)?"-":"+");
+                expandtxt.setText((extrainfo.getVisibility() == View.VISIBLE) ? "-" : "+");
             }
         });
 
@@ -181,7 +179,7 @@ public class ScoreTableFragmentCampagne extends Fragment {
         int nb6 = 0;
         int nb5 = 0;
 
-        for (int i=0;i<tirs.size();i++) {
+        for (int i = 0; i < tirs.size(); i++) {
             TirerCampagne tirer = tirs.get(i);
             View ligne = vues.get(tirer.getNoVolee() - 1);
             TextView tx = (TextView) ligne.findViewById(getId(tirer.getOrderLancer()));
@@ -200,14 +198,14 @@ public class ScoreTableFragmentCampagne extends Fragment {
                 ((TextView) ligne.findViewById(getId(7))).setText(String.valueOf(scoreVolee));
                 scoreManche += scoreVolee;
                 ((TextView) ligne.findViewById(getId(8))).setText(String.valueOf(scoreTotal));
-                float currentMoyenne = (float) scoreVolee/3;
+                float currentMoyenne = (float) scoreVolee / 3;
                 ((TextView) ligne.findViewById(R.id.tabmid_moy)).setText(String.format("%.2f", currentMoyenne));
-                String connu = (tirer.getConnu())?"Connu":"Inconnu";
+                String connu = (tirer.getConnu()) ? "Connu" : "Inconnu";
                 String libCible = db.getCible(tirer.getIdCible()).getLibelle();
 
-                ((TextView) ligne.findViewById(R.id.tabmid_cible)).setText(String.valueOf(libCible+"\n"+connu));
+                ((TextView) ligne.findViewById(R.id.tabmid_cible)).setText(String.valueOf(libCible + "\n" + connu));
                 int distance = tirer.getDistance();
-                ((TextView) ligne.findViewById(R.id.tabmid_distance)).setText(String.valueOf(distance+" m"));
+                ((TextView) ligne.findViewById(R.id.tabmid_distance)).setText(String.valueOf(distance + " m"));
                 ((TextView) ligne.findViewById(R.id.tab_nb6)).setText(String.valueOf(nb6));
                 ((TextView) ligne.findViewById(R.id.tab_nb5)).setText(String.valueOf(nb5));
 
@@ -227,9 +225,9 @@ public class ScoreTableFragmentCampagne extends Fragment {
                     TextView tx2 = (TextView) ligneManche.findViewById(getId(9));
                     tx2.setText(String.valueOf(scoreManche));
 
-                    ((TextView) ligneManche.findViewById(R.id.tabbot_flemoy)).setText(String.format("%.2f",(float) scoreManche/(tirer.getNoVolee()*3)));
-                    ((TextView) ligneManche.findViewById(R.id.tabbot_moy)).setText(String.format("%.2f",(float) scoreManche/tirer.getNoVolee()));
-                    ((TextView) ligneManche.findViewById(R.id.tabbot_9)).setText(String.valueOf(nb6_total) + "/" +String.valueOf(nb5_total));
+                    ((TextView) ligneManche.findViewById(R.id.tabbot_flemoy)).setText(String.format("%.2f", (float) scoreManche / (tirer.getNoVolee() * 3)));
+                    ((TextView) ligneManche.findViewById(R.id.tabbot_moy)).setText(String.format("%.2f", (float) scoreManche / tirer.getNoVolee()));
+                    ((TextView) ligneManche.findViewById(R.id.tabbot_9)).setText(String.valueOf(nb6_total) + "/" + String.valueOf(nb5_total));
                     ((TextView) ligneManche.findViewById(R.id.nombre_cumul)).setText("Nombre de 6/5");
 
                     scoreManche = 0;
@@ -256,22 +254,22 @@ public class ScoreTableFragmentCampagne extends Fragment {
     }
 
     private int getRealScore(int score) {
-        return score==11?10:score;
+        return score == 11 ? 10 : score;
     }
 
     private int getId(int noLancer) {
         switch (noLancer) {
-            case 1 :
+            case 1:
                 return R.id.tabmid_f1;
-            case 2 :
+            case 2:
                 return R.id.tabmid_f2;
-            case 3 :
+            case 3:
                 return R.id.tabmid_f3;
-            case 7 :
+            case 7:
                 return R.id.tabmid_sum1;
-            case 8 :
+            case 8:
                 return R.id.tabmid_sum2;
-            case 9 :
+            case 9:
                 return R.id.tabbot_sum;
             case 10:
                 return R.id.tabbot2_sum;
@@ -292,7 +290,7 @@ public class ScoreTableFragmentCampagne extends Fragment {
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int horizontal_margin = (int) getResources().getDimension(R.dimen.activity_horizontal_margin);
         //Retirer les marges pour obtenir la taille du viewport
-        int viewport_width = (int) (metrics.widthPixels - horizontal_margin * 2 );
+        int viewport_width = (int) (metrics.widthPixels - horizontal_margin * 2);
 
         if (isTablet(getActivity())) {
             return viewport_width;

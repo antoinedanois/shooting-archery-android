@@ -7,8 +7,7 @@ public class PartieGlobal {
     private Date datePartie;
     private String TypePartie;
 
-    public PartieGlobal(int id,Date datePartie, String TypePartie)
-    {
+    public PartieGlobal(int id, Date datePartie, String TypePartie) {
         super();
         this.id = id;
         this.datePartie = datePartie;
@@ -24,6 +23,7 @@ public class PartieGlobal {
     public Date getDatePartie() {
         return datePartie;
     }
+
     public void setDatePartie(Date datePartie) {
         this.datePartie = datePartie;
     }

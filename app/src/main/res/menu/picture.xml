@@ -7,22 +7,22 @@
         shootingarchery:showAsAction="ifRoom"
         android:showAsAction="ifRoom"
         android:icon="@drawable/cancel"
-        android:title="@string/cancel"/>
-    
+        android:title="@string/cancel" />
+
     <item
         android:id="@+id/action_editPicture"
         android:orderInCategory="100"
         shootingarchery:showAsAction="always"
         android:showAsAction="always"
         android:icon="@drawable/edit"
-        android:title="@string/edit"/>
-    
+        android:title="@string/edit" />
+
     <item
         android:id="@+id/action_okPicture"
         android:orderInCategory="100"
         shootingarchery:showAsAction="always"
         android:showAsAction="always"
         android:icon="@drawable/action_accept"
-        android:title="@string/valider"/>
+        android:title="@string/valider" />
 
 </menu>

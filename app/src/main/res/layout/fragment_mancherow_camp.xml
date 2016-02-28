@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".6" >
+        android:layout_weight=".6">
 
         <TextView
             android:id="@+id/tabmid_nomanche"
@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".5"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tabmid_f1"
@@ -67,7 +67,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight=".7"
-        android:weightSum="5" >
+        android:weightSum="5">
 
         <TextView
             android:id="@+id/tabmid_moy"
@@ -76,6 +76,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/moyenne" />
+
         <TextView
             android:id="@+id/tabmid_cible"
             android:layout_width="0dp"
@@ -83,6 +84,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/moyenne" />
+
         <TextView
             android:id="@+id/tabmid_distance"
             android:layout_width="0dp"

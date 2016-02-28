@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -33,7 +35,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="167dp"
-                android:id="@+id/horizontalScrollView" >
+                android:id="@+id/horizontalScrollView">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -42,23 +44,31 @@
                     android:layout_gravity="top|left|center_horizontal">
 
 
-
-                    <RadioGroup android:layout_width="match_parent"
+                    <RadioGroup
+                        android:layout_width="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <RadioButton android:button="@drawable/radiobutton_selector0"
+
+                        <RadioButton
+                            android:button="@drawable/radiobutton_selector0"
                             android:id="@+id/config2_radioCibleBlason"
-                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:layout_marginLeft="10dp"></RadioButton>
 
-                        <RadioButton android:button="@drawable/radiobutton_selector2"
+                        <RadioButton
+                            android:button="@drawable/radiobutton_selector2"
                             android:id="@+id/config2_radioCibleTrispot"
-                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:layout_weight="0.25"></RadioButton>
-                        <RadioButton android:button="@drawable/radiobutton_gaziniere"
+
+                        <RadioButton
+                            android:button="@drawable/radiobutton_gaziniere"
                             android:id="@+id/config2_radioCibleCampagne"
-                            android:layout_height="wrap_content" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:layout_weight="0.25"></RadioButton>
                         <!--<RadioButton android:button="@drawable/radiobutton_selector3"
                             android:layout_height="wrap_content" android:layout_width="wrap_content"
@@ -80,19 +90,19 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:orientation="vertical"
-            android:visibility="visible" >
+            android:visibility="visible">
 
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="2dp"
-                android:shrinkColumns="0,1" >
+                android:shrinkColumns="0,1">
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/config3_libDistance"
@@ -125,7 +135,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="100" >
+                android:weightSum="100">
 
                 <ImageButton
                     android:id="@+id/config3_prec"
@@ -154,7 +164,6 @@
         </LinearLayout>
 
 
-
         <TextView
             android:id="@+id/config3_libConditions"
             android:layout_width="wrap_content"
@@ -168,14 +177,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RadioGroup
                 android:id="@+id/radioGroup2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingLeft="15dp" >
+                android:paddingLeft="15dp">
 
                 <RadioButton
                     android:id="@+id/config2_radioCompetition"
@@ -198,7 +207,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <RadioGroup
                 android:id="@+id/radioGroup1"
@@ -206,7 +215,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:orientation="horizontal"
-                android:paddingLeft="15dp" >
+                android:paddingLeft="15dp">
 
                 <RadioButton
                     android:id="@+id/config3_radioInterieur"

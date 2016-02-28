@@ -7,13 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ManualScoreActivity" >
-    
+    tools:context=".ManualScoreActivity">
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight=".125"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/manscore_buttonValidate"
@@ -30,7 +30,7 @@
         android:layout_height="0dp"
         android:layout_weight=".125"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/manscore_edittext1"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:cursorVisible="false"
             android:editable="false"
-            android:textSize="20px" >
+            android:textSize="20px">
 
             <requestFocus
                 android:layout_width="wrap_content"
@@ -90,27 +90,27 @@
             android:visibility="gone" />
 
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight=".75"
         android:orientation="vertical"
-        android:weightSum="100" >
+        android:weightSum="100">
 
 
+        <TableLayout
+            android:id="@+id/tabButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="100"
+            android:stretchColumns="*">
 
-		<TableLayout
-		    android:id="@+id/tabButton"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:layout_weight="100"
-		    android:stretchColumns="*" >
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".125"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/manscore_buttonScore10plus"
@@ -119,160 +119,159 @@
                     android:layout_margin="4dp"
                     android:background="@android:color/holo_orange_light"
                     android:text="10+"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </LinearLayout>
-			<TableRow
-			    android:id="@+id/first_row"
-			    android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:layout_margin="0dip"
-			    android:layout_weight="50" >
 
-			    <Button
-			        android:id="@+id/manscore_buttonScore10"
-			        android:layout_width="0dip"
-			        android:layout_height="fill_parent"
-			        android:layout_margin="4dp"
-			        android:background="@android:color/holo_orange_light"
-			        android:text="10" />
-			    
-				<Button
-				    android:id="@+id/manscore_buttonScore9"
-				    android:layout_width="0dip"
-				    android:layout_height="fill_parent"
-				    android:layout_margin="4dp"
-				    android:background="@android:color/holo_orange_light"
-				    android:text="9" />
+            <TableRow
+                android:id="@+id/first_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dip"
+                android:layout_weight="50">
 
-			</TableRow>
-			
-			<TableRow
-			    android:id="@+id/second_row"
-			    android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:layout_margin="0dip"
-			    android:layout_weight="50" >
-			
-			   <Button
-			       android:id="@+id/manscore_buttonScore8"
-			       android:layout_width="0dip"
-			       android:layout_height="fill_parent"
-			       android:layout_margin="4dp"
-			       android:background="@android:color/holo_red_light"
-			       android:text="8" />
-			   
-			   <Button
-			       android:id="@+id/manscore_buttonScore7"
-			       android:layout_width="0dip"
-			       android:layout_height="fill_parent"
-			       android:layout_margin="4dp"
-			       android:background="@android:color/holo_red_light"
-			       android:text="7" />
-			
-			</TableRow>    
-			    
-			<TableRow
-			    android:id="@+id/third_row"
-			    android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:layout_margin="0dip"
-			    android:layout_weight="50" >
+                <Button
+                    android:id="@+id/manscore_buttonScore10"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_orange_light"
+                    android:text="10" />
 
-				<Button
-				    android:id="@+id/manscore_buttonScore6"
-				    android:layout_width="0dip"
-				    android:layout_height="fill_parent"
-				    android:layout_margin="4dp"
-				    android:background="@android:color/holo_blue_bright"
-				    android:text="6" />
-				
-				<Button
-				    android:id="@+id/manscore_buttonScore5"
-				    android:layout_width="0dip"
-				    android:layout_height="fill_parent"
-				    android:layout_margin="4dp"
-				    android:background="@android:color/holo_blue_bright"
-				    android:text="5" />
+                <Button
+                    android:id="@+id/manscore_buttonScore9"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_orange_light"
+                    android:text="9" />
 
-			</TableRow>
-			
-			<TableRow
-			    android:id="@+id/four_row"
-			    android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:layout_margin="0dip"
-			    android:layout_weight="50" >
-				
-				<Button
-				    android:id="@+id/manscore_buttonScore4"
-				    android:layout_width="0dip"
-				    android:layout_height="fill_parent"
-				    android:layout_margin="4dp"
-				    android:background="@android:color/black"
-				    android:text="4"
-				    android:textColor="@android:color/white" />
-				
-				<Button
-				    android:id="@+id/manscore_buttonScore3"
-				    android:layout_width="0dip"
-				    android:layout_height="fill_parent"
-				    android:layout_margin="4dp"
-				    android:background="@android:color/black"
-				    android:text="3"
-				    android:textColor="@android:color/white" />
-			    
-			</TableRow>
-			
-			<TableRow
-			    android:id="@+id/five_row"
-			    android:layout_width="match_parent"
-			    android:layout_height="match_parent"
-			    android:layout_margin="0dip"
-			    android:layout_weight="50" >
+            </TableRow>
 
+            <TableRow
+                android:id="@+id/second_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dip"
+                android:layout_weight="50">
 
-			<Button
-			    android:id="@+id/manscore_buttonScore2"
-			    android:layout_width="0dip"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="4dp"
-			    android:background="@drawable/button_border"
-			    android:text="2" />
+                <Button
+                    android:id="@+id/manscore_buttonScore8"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_red_light"
+                    android:text="8" />
+
+                <Button
+                    android:id="@+id/manscore_buttonScore7"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_red_light"
+                    android:text="7" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/third_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dip"
+                android:layout_weight="50">
+
+                <Button
+                    android:id="@+id/manscore_buttonScore6"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_blue_bright"
+                    android:text="6" />
+
+                <Button
+                    android:id="@+id/manscore_buttonScore5"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/holo_blue_bright"
+                    android:text="5" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/four_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dip"
+                android:layout_weight="50">
+
+                <Button
+                    android:id="@+id/manscore_buttonScore4"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/black"
+                    android:text="4"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/manscore_buttonScore3"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@android:color/black"
+                    android:text="3"
+                    android:textColor="@android:color/white" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/five_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dip"
+                android:layout_weight="50">
 
 
-			<Button
-			    android:id="@+id/manscore_buttonScore1"
-			    android:layout_width="0dip"
-			    android:layout_height="fill_parent"
-			    android:layout_margin="4dp"
-			    android:background="@drawable/button_border"
-			    android:text="1" />
+                <Button
+                    android:id="@+id/manscore_buttonScore2"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/button_border"
+                    android:text="2" />
 
-			</TableRow>
-			
-		</TableLayout>
 
-		<LinearLayout
-		    android:id="@+id/manual_score_but0"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_margin="4dp"
-		    android:layout_weight=".125"
-		    android:orientation="vertical"
-            >
+                <Button
+                    android:id="@+id/manscore_buttonScore1"
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/button_border"
+                    android:text="1" />
 
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/manual_score_but0"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight=".125"
+            android:orientation="vertical">
 
 
             <Button
-		        android:id="@+id/manscore_buttonScore0"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:background="@drawable/button_border"
-		        android:text="Manqué" />
+                android:id="@+id/manscore_buttonScore0"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"
+                android:text="Manqué" />
 
-		</LinearLayout>
-		
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

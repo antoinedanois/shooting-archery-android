@@ -1,48 +1,45 @@
 package com.iutbmteprow.shootingarchery;
 
-import java.util.ArrayList;
-
-import com.iutbmteprow.shootingarchery.dbman.DBHelper;
-import com.iutbmteprow.shootingarchery.dbman.Diametre;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.support.v4.app.NavUtils;
 
-public class Config2Activity extends Activity
-{
+import com.iutbmteprow.shootingarchery.dbman.DBHelper;
+import com.iutbmteprow.shootingarchery.dbman.Diametre;
+
+import java.util.ArrayList;
+
+public class Config2Activity extends Activity {
     RadioButton classiqueRadio = null;
     RadioButton trispotRadio = null;
     RadioButton campagneRadio = null;
 
-    EditText tailleCible=null;
+    EditText tailleCible = null;
     private RadioButton competition;
     private RadioButton entrainement;
     private DBHelper db;
 
-    Spinner DiametreSpinner=null;
+    Spinner DiametreSpinner = null;
     private ArrayList<Diametre> listDiametre;
     private Spinner spinner;
     private LinearLayout contentTaille;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config2);
 
@@ -61,29 +58,27 @@ public class Config2Activity extends Activity
 //			trispotRadio.setChecked(true);
 
 
-
-        if(preferences.getBoolean("RadioCibleCampagne", false)) {
+        if (preferences.getBoolean("RadioCibleCampagne", false)) {
             contentTaille.setVisibility(View.GONE);
             classiqueRadio.setChecked(true);
         }
-        if(preferences.getBoolean("RadioCibleBlason", false)){
+        if (preferences.getBoolean("RadioCibleBlason", false)) {
             contentTaille.setVisibility(View.VISIBLE);
             trispotRadio.setChecked(true);
         }
-        if(preferences.getBoolean("RadioCibleTrispot", false)){
+        if (preferences.getBoolean("RadioCibleTrispot", false)) {
             contentTaille.setVisibility(View.VISIBLE);
             trispotRadio.setChecked(true);
         }
         //lecture choix condition
-        if(preferences.getBoolean("RadioEntrainement", false))
+        if (preferences.getBoolean("RadioEntrainement", false))
             entrainement.setChecked(true);
-        if(preferences.getBoolean("RadioCompetition", false))
+        if (preferences.getBoolean("RadioCompetition", false))
             competition.setChecked(true);
         //fin lecture choix condition
     }
 
-    private void fillAttributes()
-    {
+    private void fillAttributes() {
         db = new DBHelper(this);
 //		classique = (RadioButton)findViewById(R.id.config2_cibleImg);
 //		trispot = (RadioButton)findViewById(R.id.config2_cibleTrispotImg);
@@ -92,11 +87,11 @@ public class Config2Activity extends Activity
 
         CompoundButton.OnCheckedChangeListener occl = new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked)
                     return;
                 updateDiametres((((View) buttonView).getId() == R.id.config2_radioCibleBlason));
-                switch(buttonView.getId()) {
+                switch (buttonView.getId()) {
                     case R.id.config2_radioCibleBlason: {
                         contentTaille.setVisibility(View.VISIBLE);
                         break;
@@ -114,12 +109,12 @@ public class Config2Activity extends Activity
             }
         };
 
-        classiqueRadio = (RadioButton)findViewById(R.id.config2_radioCibleBlason);
+        classiqueRadio = (RadioButton) findViewById(R.id.config2_radioCibleBlason);
         classiqueRadio.setOnCheckedChangeListener(occl);
-        trispotRadio = (RadioButton)findViewById(R.id.config2_radioCibleTrispot);
+        trispotRadio = (RadioButton) findViewById(R.id.config2_radioCibleTrispot);
         trispotRadio.setOnCheckedChangeListener(occl);
 
-        campagneRadio = (RadioButton)findViewById(R.id.config2_radioCibleCampagne);
+        campagneRadio = (RadioButton) findViewById(R.id.config2_radioCibleCampagne);
         campagneRadio.setOnCheckedChangeListener(occl);
 
 
@@ -148,37 +143,32 @@ public class Config2Activity extends Activity
 //		});
 
 
-
     }
 
-    private void setupActionBar()
-    {
+    private void setupActionBar() {
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.config, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.action_next:
                 //Erreur de saisie ?
                 if (!checkInputs())
                     return true;
 
-                if (campagneRadio.isChecked()){
+                if (campagneRadio.isChecked()) {
                     savePreferences();
                     Intent intent = new Intent(this, Config3CampagneActivity.class);
                     startActivity(intent);
-                }else{
+                } else {
                     savePreferences();
                     Intent intent = new Intent(this, Config3Activity.class);
                     startActivity(intent);
@@ -201,11 +191,11 @@ public class Config2Activity extends Activity
             editor.putInt("idDiametre", listDiametre.get(spinner.getSelectedItemPosition()).getIdDiametre());
         }
         //Choix cible
-        classiqueRadio = (RadioButton)findViewById(R.id.config2_radioCibleBlason);
-        trispotRadio = (RadioButton)findViewById(R.id.config2_radioCibleTrispot);
-        campagneRadio = (RadioButton)findViewById(R.id.config2_radioCibleCampagne);
+        classiqueRadio = (RadioButton) findViewById(R.id.config2_radioCibleBlason);
+        trispotRadio = (RadioButton) findViewById(R.id.config2_radioCibleTrispot);
+        campagneRadio = (RadioButton) findViewById(R.id.config2_radioCibleCampagne);
 
-        editor.putBoolean("ImageClassique",classiqueRadio.isChecked());
+        editor.putBoolean("ImageClassique", classiqueRadio.isChecked());
         editor.putBoolean("ImageTrispot", trispotRadio.isChecked());
         editor.putBoolean("ImageCampagne", campagneRadio.isChecked());
 
@@ -220,13 +210,10 @@ public class Config2Activity extends Activity
         editor.commit();
     }
 
-    private boolean checkInputs()
-    {
-        try
-        {
-            if(!classiqueRadio.isChecked() && !trispotRadio.isChecked()&& !campagneRadio.isChecked())
-            {
-                makeAlert(getString(R.string.error),getString(R.string.erreur_radio_non_check));
+    private boolean checkInputs() {
+        try {
+            if (!classiqueRadio.isChecked() && !trispotRadio.isChecked() && !campagneRadio.isChecked()) {
+                makeAlert(getString(R.string.error), getString(R.string.erreur_radio_non_check));
                 return false;
             }
             if (!campagneRadio.isChecked()) {
@@ -235,21 +222,18 @@ public class Config2Activity extends Activity
                     return false;
                 }
             }
-            if(!competition.isChecked() && !entrainement.isChecked()){
-                makeAlert(getString(R.string.erreur),getString(R.string.conditions_error));
+            if (!competition.isChecked() && !entrainement.isChecked()) {
+                makeAlert(getString(R.string.erreur), getString(R.string.conditions_error));
                 return false;
             }
-        }
-        catch(Exception e)
-        {
-            makeAlert(getString(R.string.error),getString(R.string.erreur_valeur_nul));
+        } catch (Exception e) {
+            makeAlert(getString(R.string.error), getString(R.string.erreur_valeur_nul));
             return false;
         }
         return true;
     }
 
-    private void makeAlert(String title,String message)
-    {
+    private void makeAlert(String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.error));
         alertDialog.setMessage(message);
@@ -264,7 +248,7 @@ public class Config2Activity extends Activity
 
     private void updateDiametres(boolean isBlason) {
         listDiametre = null;
-        listDiametre = db.getDiametres((isBlason)?1:2);
+        listDiametre = db.getDiametres((isBlason) ? 1 : 2);
         ArrayList<String> listStringDiametre = new ArrayList<String>();
         for (Diametre d : listDiametre) {
             listStringDiametre.add(String.valueOf(d.getDiametre()) + " cm");

@@ -1,10 +1,10 @@
 package com.iutbmteprow.shootingarchery;
 
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +23,8 @@ import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
 public class PlayerSelectionFragment extends Fragment {
 
     int noPlayer;
-    Spinner playerSpinner=null;
-    TextView gradeU=null;
+    Spinner playerSpinner = null;
+    TextView gradeU = null;
     private DBHelper db;
 
     public PlayerSelectionFragment() {
@@ -35,7 +35,7 @@ public class PlayerSelectionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_player_selection, container, false);
+        View v = inflater.inflate(R.layout.fragment_player_selection, container, false);
         // Inflate the layout for this fragment
 
         //Connection à la bdd
@@ -47,10 +47,10 @@ public class PlayerSelectionFragment extends Fragment {
         return v;
     }
 
-    private void loadAttributes(View v){
-        noPlayer=getArguments().getInt("noPlayer")-1;
-        playerSpinner=(Spinner)v.findViewById(R.id.playerSpinner);
-        gradeU=(TextView)v.findViewById(R.id.playerS_gradeU);
+    private void loadAttributes(View v) {
+        noPlayer = getArguments().getInt("noPlayer") - 1;
+        playerSpinner = (Spinner) v.findViewById(R.id.playerSpinner);
+        gradeU = (TextView) v.findViewById(R.id.playerS_gradeU);
     }
 
     private void setupSpinner(View v) {
@@ -86,16 +86,15 @@ public class PlayerSelectionFragment extends Fragment {
     }
 
 
-    private void savePreferences()
-    {
+    private void savePreferences() {
 
         SharedPreferences preferences = getActivity().getSharedPreferences("partie", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("NomUtilisateur"+noPlayer, playerSpinner.getSelectedItem().toString());
+        editor.putString("NomUtilisateur" + noPlayer, playerSpinner.getSelectedItem().toString());
         String userSpinner = playerSpinner.getSelectedItem().toString();
 
         String[] nomUtil = userSpinner.split(" ");
-        editor.putInt("idUtilisateur"+noPlayer, db.getUtilisateurFromName(nomUtil[1], nomUtil[0]).getId());
+        editor.putInt("idUtilisateur" + noPlayer, db.getUtilisateurFromName(nomUtil[1], nomUtil[0]).getId());
 
         editor.commit();
     }

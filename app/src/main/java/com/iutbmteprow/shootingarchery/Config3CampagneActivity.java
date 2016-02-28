@@ -13,14 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
-
-import java.util.Date;
 
 import com.iutbmteprow.shootingarchery.dbman.Campagne;
 import com.iutbmteprow.shootingarchery.dbman.DBHelper;
 
-public class Config3CampagneActivity extends Activity{
+import java.util.Date;
+
+public class Config3CampagneActivity extends Activity {
     boolean isEntrainement = false;
     private RadioButton piquet1;
     private RadioButton piquet2;
@@ -30,9 +29,6 @@ public class Config3CampagneActivity extends Activity{
     private RadioButton cible20;
     private RadioButton cible24;
     private EditText num1erecible;
-
-
-
 
 
     @Override
@@ -62,27 +58,26 @@ public class Config3CampagneActivity extends Activity{
         fillAttributes();
     }
 
-    private void fillAttributes()
-    {
+    private void fillAttributes() {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
 
         //lecture choix piquet
-        if(preferences.getBoolean("RadioPiquet1", false))
+        if (preferences.getBoolean("RadioPiquet1", false))
             piquet1.setChecked(true);
-        if(preferences.getBoolean("RadioPiquet2", false))
+        if (preferences.getBoolean("RadioPiquet2", false))
             piquet2.setChecked(true);
-        if(preferences.getBoolean("RadioPiquet3", false))
+        if (preferences.getBoolean("RadioPiquet3", false))
             piquet3.setChecked(true);
         //fin lecture choix piquet
 
         //lecture choix nombre de cibles
-        if(preferences.getBoolean("RadioCible12", false))
+        if (preferences.getBoolean("RadioCible12", false))
             cible12.setChecked(true);
-        if(preferences.getBoolean("RadioCible16", false))
+        if (preferences.getBoolean("RadioCible16", false))
             cible16.setChecked(true);
-        if(preferences.getBoolean("RadioCible20", false))
+        if (preferences.getBoolean("RadioCible20", false))
             cible20.setChecked(true);
-        if(preferences.getBoolean("RadioCible24", false))
+        if (preferences.getBoolean("RadioCible24", false))
             cible24.setChecked(true);
         //fin lecture choix nombre de cible
 
@@ -101,7 +96,6 @@ public class Config3CampagneActivity extends Activity{
         SharedPreferences.Editor editor = preferences.edit();
 
 
-
         //choix piquet
         editor.putBoolean("RadioPiquet1", piquet1.isChecked());
         editor.putBoolean("RadioPiquet2", piquet2.isChecked());
@@ -109,27 +103,27 @@ public class Config3CampagneActivity extends Activity{
         //Fin choix piquet
 
         //choix nombre de cibles
-        if (cible12.isChecked()){
+        if (cible12.isChecked()) {
             editor.putInt("nbCibles", 12);
-        }else if (cible16.isChecked()){
+        } else if (cible16.isChecked()) {
             editor.putInt("nbCibles", 16);
-        }else if (cible20.isChecked()){
+        } else if (cible20.isChecked()) {
             editor.putInt("nbCibles", 20);
-        }else if (cible24.isChecked()){
+        } else if (cible24.isChecked()) {
             editor.putInt("nbCibles", 24);
-        }else{
+        } else {
             editor.putInt("nbCibles", 1);
         }
 //        editor.putBoolean("RadioCible12", cible12.isChecked());
 //        editor.putBoolean("RadioCible24",cible24.isChecked());
         //fin choix nombre de cibles
-        editor.putInt("currentVolee",1);
+        editor.putInt("currentVolee", 1);
         //choix numéro 1ère cible
-        if (preferences.getBoolean("RadioCompetition", false)){
-        int currentcible = Integer.parseInt(num1erecible.getText().toString());
-        editor.putInt("firstCible",currentcible);}
+        if (preferences.getBoolean("RadioCompetition", false)) {
+            int currentcible = Integer.parseInt(num1erecible.getText().toString());
+            editor.putInt("firstCible", currentcible);
+        }
         //fin choix
-
 
 
         editor.commit();
@@ -139,12 +133,12 @@ public class Config3CampagneActivity extends Activity{
     private void savePartie() {
         SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
         int idCampagne = new DBHelper(this).addCampagne(new Campagne(0, //idPartie
-                        sp.getInt("idUtilisateur", 0), //idUtilisateur
-                        false, //partieFinie
-                        new Date(), //datePartie
-                        sp.getInt("nbCibles", 0), //nbCibles
-                        sp.getBoolean("RadioCompetition", false),//competition
-                        sp.getString("NomArc", "test")) //nom arc
+                sp.getInt("idUtilisateur", 0), //idUtilisateur
+                false, //partieFinie
+                new Date(), //datePartie
+                sp.getInt("nbCibles", 0), //nbCibles
+                sp.getBoolean("RadioCompetition", false),//competition
+                sp.getString("NomArc", "test")) //nom arc
         );
         sp.edit().putInt("idCampagne", idCampagne).commit();
     }
@@ -160,9 +154,9 @@ public class Config3CampagneActivity extends Activity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_next:
-                if(!checkForm()){
+                if (!checkForm()) {
                     return true;
-                }else{
+                } else {
                     savePreferences();
                     Intent intent = new Intent(this, InGameActivityCampagne.class);
                     startActivity(intent);
@@ -176,37 +170,34 @@ public class Config3CampagneActivity extends Activity{
     }
 
     private boolean checkForm() {
-        int nbCibles =0;
-        if (cible12.isChecked()){
+        int nbCibles = 0;
+        if (cible12.isChecked()) {
             nbCibles = 12;
-        }else if (cible16.isChecked()){
-            nbCibles =  16;
-        }else if (cible20.isChecked()){
+        } else if (cible16.isChecked()) {
+            nbCibles = 16;
+        } else if (cible20.isChecked()) {
             nbCibles = 20;
-        }else if (cible24.isChecked()){
-            nbCibles  =24;
+        } else if (cible24.isChecked()) {
+            nbCibles = 24;
         }
-        if(!piquet1.isChecked() && !piquet2.isChecked() && !piquet3.isChecked()){
-            makeDialog(getString(R.string.erreur),getString(R.string.piquet_error));
+        if (!piquet1.isChecked() && !piquet2.isChecked() && !piquet3.isChecked()) {
+            makeDialog(getString(R.string.erreur), getString(R.string.piquet_error));
             return false;
-        }else if(!cible24.isChecked() && !cible12.isChecked() && !cible20.isChecked() && !cible16.isChecked() && !isEntrainement){
-            makeDialog(getString(R.string.erreur),getString(R.string.nbcible_error));
+        } else if (!cible24.isChecked() && !cible12.isChecked() && !cible20.isChecked() && !cible16.isChecked() && !isEntrainement) {
+            makeDialog(getString(R.string.erreur), getString(R.string.nbcible_error));
             return false;
-        }else if(num1erecible.getText().toString().equals("") && !isEntrainement){
-            makeDialog(getString(R.string.erreur),getString(R.string.numcible_error)+" "+nbCibles);
+        } else if (num1erecible.getText().toString().equals("") && !isEntrainement) {
+            makeDialog(getString(R.string.erreur), getString(R.string.numcible_error) + " " + nbCibles);
             return false;
-        }
-        else if(!isEntrainement && (Integer.parseInt(num1erecible.getText().toString())<1 ||Integer.parseInt(num1erecible.getText().toString())>nbCibles)){
-            makeDialog(getString(R.string.erreur),getString(R.string.numcible_error)+" "+nbCibles);
+        } else if (!isEntrainement && (Integer.parseInt(num1erecible.getText().toString()) < 1 || Integer.parseInt(num1erecible.getText().toString()) > nbCibles)) {
+            makeDialog(getString(R.string.erreur), getString(R.string.numcible_error) + " " + nbCibles);
             return false;
-        }
-
-        else{
+        } else {
             return true;
         }
     }
 
-    private void makeDialog(String title, String message){
+    private void makeDialog(String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.error));
         alertDialog.setMessage(message);

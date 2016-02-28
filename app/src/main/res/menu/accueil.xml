@@ -1,29 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:shootingarchery="http://schemas.android.com/apk/res-auto">
 
-<!--    <item
-        android:id="@+id/action_newgame"
-        android:orderInCategory="100"
-        android:icon="@drawable/add_to_queue"
-        android:showAsAction="always"
-        android:title="@string/nouvelle_seance">
-    </item>
-    
-    <item
-        android:id="@+id/action_search"
-        android:orderInCategory="100"
-        android:icon="@drawable/action_search"
-        android:showAsAction="always"
-        android:title="@string/parcourir">
-    </item>-->
-    
+    <!--    <item
+            android:id="@+id/action_newgame"
+            android:orderInCategory="100"
+            android:icon="@drawable/add_to_queue"
+            android:showAsAction="always"
+            android:title="@string/nouvelle_seance">
+        </item>
+
+        <item
+            android:id="@+id/action_search"
+            android:orderInCategory="100"
+            android:icon="@drawable/action_search"
+            android:showAsAction="always"
+            android:title="@string/parcourir">
+        </item>-->
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:icon="@drawable/action_settings"
         shootingarchery:showAsAction="always"
         android:showAsAction="always"
-        android:title="@string/action_settings">
-    </item>
-    
+        android:title="@string/action_settings"></item>
+
 </menu>

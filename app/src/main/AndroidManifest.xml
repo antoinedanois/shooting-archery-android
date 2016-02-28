@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iutbmteprow.shootingarchery" >
+    package="com.iutbmteprow.shootingarchery">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/newlogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".AccueilActivity" >
-        </activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".AccueilActivity" />
         <activity
             android:name=".ArcActivity"
-            android:label="@string/title_activity_arc" >
+            android:label="@string/title_activity_arc">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".ChoixReglage"
-            android:label="@string/title_activity_choix_reglage" >
+            android:label="@string/title_activity_choix_reglage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.ArcActivity" />
         </activity>
         <activity
             android:name=".Config1Activity"
-            android:label="@string/title_activity_config1" >
+            android:label="@string/title_activity_config1">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
-        <!--<activity-->
-            <!--android:name=".ConfigNPlayersActivity"-->
-            <!--android:label="@string/title_activity_config_nplayers" >-->
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />-->
-        <!--</activity>-->
+        <!-- <activity -->
+        <!-- android:name=".ConfigNPlayersActivity" -->
+        <!-- android:label="@string/title_activity_config_nplayers" > -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.PARENT_ACTIVITY" -->
+        <!-- android:value="com.iutbmteprow.shootingarchery.AccueilActivity" /> -->
+        <!-- </activity> -->
         <activity
             android:name=".MultiplayerSelectionActivity"
-            android:label="@string/title_activity_multiplayer_selection" >
+            android:label="@string/title_activity_multiplayer_selection">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".MainConfigActivity"
-            android:label="@string/title_activity_main_config" >
+            android:label="@string/title_activity_main_config">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.MultiplayerSelectionActivity" />
@@ -59,107 +64,105 @@
             android:name=".Config2Activity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_config2"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.Config1Activity" />
         </activity>
         <activity
             android:name=".Config3Activity"
-            android:label="@string/title_activity_config3" >
+            android:label="@string/title_activity_config3">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.Config2Activity" />
         </activity>
         <activity
             android:name=".Config3CampagneActivity"
-            android:label="@string/title_activity_config3" >
+            android:label="@string/title_activity_config3">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.Config2Activity" />
         </activity>
         <activity
             android:name=".ConseilActivity"
-            android:label="@string/title_activity_conseil" >
+            android:label="@string/title_activity_conseil">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".ConseilArcActivity"
-            android:label="@string/title_activity_conseil_arc" >
+            android:label="@string/title_activity_conseil_arc">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.ConseilActivity" />
         </activity>
         <activity
             android:name=".ConseilReglage"
-            android:label="@string/title_activity_conseil_reg" >
+            android:label="@string/title_activity_conseil_reg">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.ConseilActivity" />
         </activity>
         <activity
             android:name=".ConseilTirActivity"
-            android:label="@string/title_activity_conseil_tir" >
+            android:label="@string/title_activity_conseil_tir">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.ConseilActivity" />
         </activity>
         <activity
             android:name=".InGameActivity"
-            android:label="@string/title_activity_in_game" >
+            android:label="@string/title_activity_in_game">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".InGameActivityCampagne"
-            android:label="@string/title_activity_in_game" >
+            android:label="@string/title_activity_in_game">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".ManualScoreActivity"
-            android:label="@string/title_activity_manual_score" >
+            android:label="@string/title_activity_manual_score">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.InGameMultiActivity" />
         </activity>
-
         <activity
             android:name=".ManualScoreActivityv2"
-            android:label="@string/title_activity_manual_score" >
+            android:label="@string/title_activity_manual_score">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.InGameMultiActivity" />
         </activity>
-
         <activity
             android:name=".ManualScoreCampActivity"
-            android:label="@string/title_activity_manual_score" >
+            android:label="@string/title_activity_manual_score">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.InGameActivityCampagne" />
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/action_settings" >
+            android:label="@string/action_settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".SortActivity"
-            android:label="@string/parcourir" >
+            android:label="@string/parcourir">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.AccueilActivity" />
         </activity>
         <activity
             android:name=".SortResultActivity"
-            android:label="@string/title_activity_sort_result" >
+            android:label="@string/title_activity_sort_result">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortActivity" />
@@ -167,7 +170,7 @@
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -176,30 +179,39 @@
         </activity>
         <activity
             android:name=".ViewGameActivity"
-            android:label="@string/title_activity_view_game" >
+            android:label="@string/title_activity_view_game">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
         <activity
             android:name=".ViewGameActivityv2"
-            android:label="@string/title_activity_view_game" >
+            android:label="@string/title_activity_view_game">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
         <activity
             android:name=".ViewGameActivityCamp"
-            android:label="@string/title_activity_view_game" >
+            android:label="@string/title_activity_view_game">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iutbmteprow.shootingarchery.SortResultActivity" />
         </activity>
-        <activity android:name=".IndividualConfigActivity" >
-        </activity>
+        <activity android:name=".IndividualConfigActivity" />
         <activity
             android:name=".InGameMultiActivity"
-            android:label="@string/title_activity_in_game_multi" >
+            android:label="@string/title_activity_in_game_multi" />
+        <activity
+            android:name=".weblink.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".weblink.WeblinkActivity"
+            android:label="@string/title_activity_weblink">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iutbmteprow.shootingarchery.ViewGameActivityv2">
+            </meta-data>
         </activity>
     </application>
 

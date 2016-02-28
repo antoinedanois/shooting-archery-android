@@ -1,8 +1,5 @@
 package com.iutbmteprow.shootingarchery;
 
-import com.iutbmteprow.shootingarchery.dbman.DBHelper;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,13 +7,20 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.iutbmteprow.shootingarchery.dbman.DBHelper;
+import com.iutbmteprow.shootingarchery.dbman.Partie;
+import com.iutbmteprow.shootingarchery.weblink.WeblinkActivity;
 
 public class ViewGameActivityv2 extends Activity {
 
     private DBHelper db;
     private ScoreTableFragmentv2 stf;
+    Partie partie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class ViewGameActivityv2 extends Activity {
         //Preparer le fragment avec ses arguments
         stf = new ScoreTableFragmentv2();
         Bundle arguments = new Bundle();
-        arguments.putInt("idPartie",getIntent().getIntExtra("idPartie", 0));
+        arguments.putInt("idPartie", getIntent().getIntExtra("idPartie", 0));
         stf.setArguments(arguments);
 
         //Installer le fragment dans la vue
@@ -86,6 +90,9 @@ public class ViewGameActivityv2 extends Activity {
             case R.id.action_share:
                 shareGame();
                 return true;
+            case R.id.action_upload:
+                upload();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -127,9 +134,15 @@ public class ViewGameActivityv2 extends Activity {
 
         final Dialog d = new AlertDialog.Builder(this)
                 .setPositiveButton(R.string.ok, null)
-                .setMessage(getString(R.string.saved_file_message,res.getLastPathSegment(),"arrowseye"))
+                .setMessage(getString(R.string.saved_file_message, res.getLastPathSegment(), "arrowseye"))
                 .create();
         d.show();
+    }
+
+    private void upload() {
+        Intent intent = new Intent(ViewGameActivityv2.this, WeblinkActivity.class);
+        intent.putExtra("idPartieToUpload", getIntent().getIntExtra("idPartie", 0));
+        startActivity(intent);
     }
 
 }

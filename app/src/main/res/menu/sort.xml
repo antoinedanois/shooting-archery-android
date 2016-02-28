@@ -7,14 +7,14 @@
         shootingarchery:showAsAction="always"
         android:showAsAction="always"
         android:icon="@drawable/add_to_queue"
-        android:title="@string/ajouter_une_condition"/>
-    
+        android:title="@string/ajouter_une_condition" />
+
     <item
         android:id="@+id/action_search"
         android:orderInCategory="100"
         shootingarchery:showAsAction="always"
         android:showAsAction="always"
         android:icon="@drawable/action_accept"
-        android:title="@string/ok"/>  
+        android:title="@string/ok" />
 
 </menu>

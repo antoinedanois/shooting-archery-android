@@ -1,12 +1,5 @@
 package com.iutbmteprow.shootingarchery;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.iutbmteprow.shootingarchery.dbman.DBHelper;
-import com.iutbmteprow.shootingarchery.dbman.Partie;
-import com.iutbmteprow.shootingarchery.dbman.Tirer;
-import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,6 +17,14 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.iutbmteprow.shootingarchery.dbman.DBHelper;
+import com.iutbmteprow.shootingarchery.dbman.Partie;
+import com.iutbmteprow.shootingarchery.dbman.Tirer;
+import com.iutbmteprow.shootingarchery.dbman.Utilisateur;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScoreTableFragmentv2 extends Fragment {
 
@@ -59,23 +60,23 @@ public class ScoreTableFragmentv2 extends Fragment {
         noCumul10 = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("col_1010p", "per_row").equals("per_row");
 
         // Inflate the layout for this fragment
-        ScrollView rView=new ScrollView(getActivity());
+        ScrollView rView = new ScrollView(getActivity());
 
         LinearLayout result = new LinearLayout(getActivity());
         result.setOrientation(LinearLayout.VERTICAL);
 
-        currentPlayer=getArguments().getInt(ARG_SECTION_NUMBER)-1;
+        currentPlayer = getArguments().getInt(ARG_SECTION_NUMBER) - 1;
 
         int idPartie = getArguments().getInt("idPartie");
 
-        if(!(idPartie>0)) {
+        if (!(idPartie > 0)) {
             SharedPreferences sp = getActivity().getSharedPreferences("partie", Context.MODE_PRIVATE);
             idPartie = sp.getInt("p" + currentPlayer + "idPartie", 0);
         }
 
         db = new DBHelper(getActivity());
         partie = db.getPartie(idPartie);
-        Log.e("idPartie",""+idPartie+", player: "+currentPlayer+", idU: "+partie.getIdUtilisateur());
+        Log.d("idPartie", "" + idPartie + ", player: " + currentPlayer + ", idU: " + partie.getIdUtilisateur());
         manches = new ArrayList<List<View>>();
 
         makeTopView(inflater, container, result);
@@ -91,8 +92,8 @@ public class ScoreTableFragmentv2 extends Fragment {
     }
 
     private void makeManches(LayoutInflater inflater, ViewGroup container, LinearLayout result) {
-        for (int i=1;i<=partie.getNbManches();i++) {
-            makeManche(i,inflater,container,result);
+        for (int i = 1; i <= partie.getNbManches(); i++) {
+            makeManche(i, inflater, container, result);
         }
     }
 
@@ -111,7 +112,7 @@ public class ScoreTableFragmentv2 extends Fragment {
         hsv_layout.addView(constraint);
 
         if (partie.isCompetition()) {
-            View top_manche = inflater.inflate(R.layout.fragment_manchetop, container,false);
+            View top_manche = inflater.inflate(R.layout.fragment_manchetop, container, false);
             ((TextView) top_manche.findViewById(R.id.tabtop2_manche)).setText(String.valueOf(idManche));
             result.addView(top_manche);
         }
@@ -122,17 +123,17 @@ public class ScoreTableFragmentv2 extends Fragment {
             ((TextView) ligne.findViewById(R.id.tabtop2_f5)).setVisibility(View.GONE);
             ((TextView) ligne.findViewById(R.id.tabtop2_f6)).setVisibility(View.GONE);
         }
-        if(partie.isExterieur()){
+        if (partie.isExterieur()) {
             ((TextView) ligne.findViewById(R.id.textView1)).setText(R.string.nombre_10p);
             ((TextView) ligne.findViewById(R.id.textView2)).setText(R.string.nombre_10);
         }
 
         hsv_layout.addView(ligne);
 
-        for (int i=1;i<=partie.getNbVolees();i++) {
+        for (int i = 1; i <= partie.getNbVolees(); i++) {
             View ligneTab = inflater.inflate(R.layout.fragment_mancherow, container, false);
             ((TextView) ligneTab.findViewById(R.id.tabmid_nomanche)).setText(String.valueOf(i));
-            if (i%2 == 0) {
+            if (i % 2 == 0) {
                 ligneTab.setBackgroundColor(Color.LTGRAY);
             }
 
@@ -147,11 +148,11 @@ public class ScoreTableFragmentv2 extends Fragment {
 
         result.addView(hsv);
 
-        View ligneTot = inflater.inflate(R.layout.fragment_manchebottom, container,false);
+        View ligneTot = inflater.inflate(R.layout.fragment_manchebottom, container, false);
         if (!partie.isCompetition()) {
             ((TextView) ligneTot.findViewById(R.id.tabbot_string)).setText(R.string.total_entrainement);
         }
-        if (partie.isExterieur()){
+        if (partie.isExterieur()) {
             ((TextView) ligneTot.findViewById(R.id.nombre_cumul)).setText(R.string.nb_11_total);
         }
         result.addView(ligneTot);
@@ -173,8 +174,8 @@ public class ScoreTableFragmentv2 extends Fragment {
         ((TextView) topView.findViewById(R.id.tabtop_username)).setText(nomUtilisateur);
 
         //Remplissage de l'entete cache
-        ((TextView) topView.findViewById(R.id.tabtop_comptEnt)).setText(partie.isCompetition()?"Compétition":"Entraînement");
-        ((TextView) topView.findViewById(R.id.tabtop_intExt)).setText((partie.isExterieur())?"extérieur":"intérieur");
+        ((TextView) topView.findViewById(R.id.tabtop_comptEnt)).setText(partie.isCompetition() ? "Compétition" : "Entraînement");
+        ((TextView) topView.findViewById(R.id.tabtop_intExt)).setText((partie.isExterieur()) ? "extérieur" : "intérieur");
         ((TextView) topView.findViewById(R.id.tabtop_distance)).setText(String.valueOf(partie.getDistanceCible()));
         ((TextView) topView.findViewById(R.id.tabtop_taillecible)).setText(String.valueOf(db.getDiametreFromId(partie.getIdDiametre()).getDiametre()));
         ((TextView) topView.findViewById(R.id.tabtop_typecible)).setText(db.getCible(partie.getIdCible()).getLibelle());
@@ -195,9 +196,9 @@ public class ScoreTableFragmentv2 extends Fragment {
             @Override
             public void onClick(View v) {
                 View extrainfo = topView.findViewById(R.id.tabtop_extrainfo);
-                extrainfo.setVisibility((extrainfo.getVisibility() == View.VISIBLE)?View.GONE:View.VISIBLE);
+                extrainfo.setVisibility((extrainfo.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE);
                 TextView expandtxt = (TextView) topView.findViewById(R.id.tabtop_expbtn);
-                expandtxt.setText((extrainfo.getVisibility() == View.VISIBLE)?"-":"+");
+                expandtxt.setText((extrainfo.getVisibility() == View.VISIBLE) ? "-" : "+");
             }
         });
 
@@ -222,10 +223,10 @@ public class ScoreTableFragmentv2 extends Fragment {
         int nb10 = 0;
         int nb9 = 0;
 
-        for (int i=0;i<tirs.size();i++) {
+        for (int i = 0; i < tirs.size(); i++) {
             Tirer tirer = tirs.get(i);
-            Log.e("tirs.size ",""+tirs.size());
-            Log.e("tirer","IDPartie: "+tirer.getIdPartie()+", NoManche "+tirer.getNoManche()+" Volee "+tirer.getNbVolee()+" fleche "+tirer.getOrderLancer());
+            Log.d("tirs.size ", "" + tirs.size());
+            Log.d("tirer", "IDPartie: " + tirer.getIdPartie() + ", NoManche " + tirer.getNoManche() + " Volee " + tirer.getNbVolee() + " fleche " + tirer.getOrderLancer());
             View ligne = manches.get(tirer.getNoManche() - 1).get(tirer.getNbVolee() - 1);
             TextView tx = (TextView) ligne.findViewById(getId(tirer.getOrderLancer()));
             tx.setText(getScoreString(tirer.getScore()));
@@ -233,9 +234,9 @@ public class ScoreTableFragmentv2 extends Fragment {
             //Calcul des scores
             scoreVolee += getRealScore(tirer.getScore());
             scoreTotal += getRealScore(tirer.getScore());
-            if (tirer.getScore() == 11){
+            if (tirer.getScore() == 11) {
                 nb10p++;
-            }else  if (tirer.getScore() == 10) {
+            } else if (tirer.getScore() == 10) {
                 nb10++;
             } else if (tirer.getScore() == 9) {
                 nb9++;
@@ -245,12 +246,12 @@ public class ScoreTableFragmentv2 extends Fragment {
                 ((TextView) ligne.findViewById(getId(7))).setText(String.valueOf(scoreVolee));
                 scoreManche += scoreVolee;
                 ((TextView) ligne.findViewById(getId(8))).setText(String.valueOf(scoreTotal));
-                float currentMoyenne = (float) scoreVolee/partie.getNbFleches();
+                float currentMoyenne = (float) scoreVolee / partie.getNbFleches();
                 ((TextView) ligne.findViewById(R.id.tabmid_moy)).setText(String.format("%.2f", currentMoyenne));
-                if (partie.isExterieur()){
+                if (partie.isExterieur()) {
                     ((TextView) ligne.findViewById(R.id.tab_nb10)).setText(String.valueOf(nb10p));
                     ((TextView) ligne.findViewById(R.id.tab_nb9)).setText(String.valueOf(nb10));
-                }else {
+                } else {
                     ((TextView) ligne.findViewById(R.id.tab_nb10)).setText(String.valueOf(nb10));
                     ((TextView) ligne.findViewById(R.id.tab_nb9)).setText(String.valueOf(nb9));
                 }
@@ -273,11 +274,11 @@ public class ScoreTableFragmentv2 extends Fragment {
                     TextView tx2 = (TextView) ligneManche.findViewById(getId(9));
                     tx2.setText(String.valueOf(scoreManche));
 
-                    ((TextView) ligneManche.findViewById(R.id.tabbot_flemoy)).setText(String.format("%.2f",(float) scoreManche/(tirer.getNbVolee()*partie.getNbFleches())));
-                    ((TextView) ligneManche.findViewById(R.id.tabbot_moy)).setText(String.format("%.2f",(float) scoreManche/tirer.getNbVolee()));
-                    if (partie.isExterieur()){
+                    ((TextView) ligneManche.findViewById(R.id.tabbot_flemoy)).setText(String.format("%.2f", (float) scoreManche / (tirer.getNbVolee() * partie.getNbFleches())));
+                    ((TextView) ligneManche.findViewById(R.id.tabbot_moy)).setText(String.format("%.2f", (float) scoreManche / tirer.getNbVolee()));
+                    if (partie.isExterieur()) {
                         ((TextView) ligneManche.findViewById(R.id.tabbot_9)).setText(String.valueOf(nb10p_total) + "/" + String.valueOf(nb10_total));
-                    }else {
+                    } else {
                         ((TextView) ligneManche.findViewById(R.id.tabbot_9)).setText(String.valueOf(nb10_total) + "/" + String.valueOf(nb9_total));
                     }
 
@@ -300,7 +301,7 @@ public class ScoreTableFragmentv2 extends Fragment {
             return "M";
         } else if (score == 10) {
             return "10";
-        }else if (score == 11) {
+        } else if (score == 11) {
             return "10+";
         } else {
             return String.valueOf(score);
@@ -308,28 +309,28 @@ public class ScoreTableFragmentv2 extends Fragment {
     }
 
     private int getRealScore(int score) {
-        return score==11?10:score;
+        return score == 11 ? 10 : score;
     }
 
     private int getId(int noLancer) {
         switch (noLancer) {
-            case 1 :
+            case 1:
                 return R.id.tabmid_f1;
-            case 2 :
+            case 2:
                 return R.id.tabmid_f2;
-            case 3 :
+            case 3:
                 return R.id.tabmid_f3;
-            case 4 :
+            case 4:
                 return R.id.tabmid_f4;
-            case 5 :
+            case 5:
                 return R.id.tabmid_f5;
-            case 6 :
+            case 6:
                 return R.id.tabmid_f6;
-            case 7 :
+            case 7:
                 return R.id.tabmid_sum1;
-            case 8 :
+            case 8:
                 return R.id.tabmid_sum2;
-            case 9 :
+            case 9:
                 return R.id.tabbot_sum;
             case 10:
                 return R.id.tabbot2_sum;
@@ -350,7 +351,7 @@ public class ScoreTableFragmentv2 extends Fragment {
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int horizontal_margin = (int) getResources().getDimension(R.dimen.activity_horizontal_margin);
         //Retirer les marges pour obtenir la taille du viewport
-        int viewport_width = (int) (metrics.widthPixels - horizontal_margin * 2 );
+        int viewport_width = (int) (metrics.widthPixels - horizontal_margin * 2);
 
         if (isTablet(getActivity())) {
             return viewport_width;

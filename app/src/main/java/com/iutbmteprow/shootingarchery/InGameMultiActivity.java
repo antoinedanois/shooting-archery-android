@@ -2,10 +2,7 @@ package com.iutbmteprow.shootingarchery;
 
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.Notification;
@@ -15,19 +12,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
 import com.iutbmteprow.shootingarchery.dbman.DBHelper;
@@ -74,14 +70,14 @@ public class InGameMultiActivity extends Activity {
         db = new DBHelper(this);
         loadAttributes();
         readPreferences();
-        tables=new ArrayList<>();
+        tables = new ArrayList<>();
 
         createTabs();
 
 
     }
 
-    private void createTabs(){
+    private void createTabs() {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -110,23 +106,23 @@ public class InGameMultiActivity extends Activity {
         });
     }
 
-    private void loadAttributes(){
-        actualPlayerNumber=0;
+    private void loadAttributes() {
+        actualPlayerNumber = 0;
     }
 
     private void readPreferences() {
         SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
         nPlayers = sp.getInt("nPlayers", 1);
         actualPlayerID = sp.getInt("idUtilisateur" + actualPlayerNumber, 0);
-        actualPlayerNom= sp.getString("NomUtilisateur" + actualPlayerNumber, null);
+        actualPlayerNom = sp.getString("NomUtilisateur" + actualPlayerNumber, null);
 
-        SharedPreferences.Editor editor =sp.edit();
-        editor.putInt("currentPlayer",0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("currentPlayer", 0);
         editor.commit();
         readActualPlayerData();
     }
 
-    private void readActualPlayerData(){
+    private void readActualPlayerData() {
         SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
         noVolee = sp.getInt("p1currentVolee", 0);
         noManche = sp.getInt("p1currentManche", 0);
@@ -199,9 +195,9 @@ public class InGameMultiActivity extends Activity {
                 .setNegativeButton(android.R.string.no, null)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        for (int p = 1; p <= nPlayers;p++) {
+                        for (int p = 1; p <= nPlayers; p++) {
                             SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
-                            partie = db.getPartie(sp.getInt("p"+p+"idPartie", 0));
+                            partie = db.getPartie(sp.getInt("p" + p + "idPartie", 0));
 
                             db.terminerPartie(partie.getIdPartie());
                             if (!partie.isCompetition()) {
@@ -273,14 +269,15 @@ public class InGameMultiActivity extends Activity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 createTabs();
-                for(int i=0;i<tables.size();i++){
-                        tables.get(i).refresh();
+                for (int i = 0; i < tables.size(); i++) {
+                    tables.get(i).refresh();
                 }
             }
         }
     }
 
     //------------------------------------------Class  SectionsPagerAdapter ------------------------------------------------------------
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -295,27 +292,27 @@ public class InGameMultiActivity extends Activity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            actualPlayerNumber=position;
+            actualPlayerNumber = position;
 
-            position+=1;
+            position += 1;
 
-            actualPlayerNom=getName(getID(actualPlayerNumber));
+            actualPlayerNom = getName(getID(actualPlayerNumber));
 //          return PlaceholderFragment.newInstance(position + 1,actualPlayerNom);
-            ScoreTableFragmentv2 frag=ScoreTableFragmentv2.newInstance(position + 1);
+            ScoreTableFragmentv2 frag = ScoreTableFragmentv2.newInstance(position + 1);
             tables.add(frag);
             return frag;
         }
 
-        public int getID(int playerNumber){
+        public int getID(int playerNumber) {
             SharedPreferences sp = getSharedPreferences("partie", Context.MODE_PRIVATE);
-            int id = sp.getInt("idUtilisateur"+(playerNumber), 0);
+            int id = sp.getInt("idUtilisateur" + (playerNumber), 0);
             return id;
         }
 
-        private String getName(int id){
-            db=new DBHelper(getApplicationContext());
-            Utilisateur player=db.getUtilisateur(id);
-            return player.getPrenom()+" "+player.getNom();
+        private String getName(int id) {
+            db = new DBHelper(getApplicationContext());
+            Utilisateur player = db.getUtilisateur(id);
+            return player.getPrenom() + " " + player.getNom();
         }
 
         @Override

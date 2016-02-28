@@ -1,5 +1,6 @@
 package com.iutbmteprow.shootingarchery;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -9,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,7 +33,7 @@ public class MultiplayerSelectionActivity extends Activity {
 
     private DBHelper db;
     LinearLayout spinerContainer;
-    private Spinner nPlayerSpinner=null;
+    private Spinner nPlayerSpinner = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +49,21 @@ public class MultiplayerSelectionActivity extends Activity {
         if (noUser()) {
             Toast.makeText(this, R.string.no_user_inside, Toast.LENGTH_LONG).show();
             makeUser();
-        };
+        }
+        ;
 
         loadAttributes();
         //a guardar qty en sharedpreferences
     }
 
-    private void loadAttributes(){
-        spinerContainer=(LinearLayout)findViewById(R.id.SpinnerContainer);
-        nPlayerSpinner=(Spinner)findViewById(R.id.userQtySpinner);
+    private void loadAttributes() {
+        spinerContainer = (LinearLayout) findViewById(R.id.SpinnerContainer);
+        nPlayerSpinner = (Spinner) findViewById(R.id.userQtySpinner);
         setupSpinner();
         loadFragments(1);
     }
 
-    private void loadFragments(int qty){
+    private void loadFragments(int qty) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         spinerContainer.removeAllViews();
@@ -70,8 +71,8 @@ public class MultiplayerSelectionActivity extends Activity {
             PlayerSelectionFragment frag = new PlayerSelectionFragment();
             fragmentTransaction.add(R.id.SpinnerContainer, frag, "playerFrag");
 
-            Bundle params=new Bundle();
-            params.putInt("noPlayer",i);
+            Bundle params = new Bundle();
+            params.putInt("noPlayer", i);
             frag.setArguments(params);
         }
         fragmentTransaction.commit();
@@ -99,8 +100,8 @@ public class MultiplayerSelectionActivity extends Activity {
 
     }
 
-    private List<String> getSpinnerElements(){
-        List<String> players=new ArrayList<>();
+    private List<String> getSpinnerElements() {
+        List<String> players = new ArrayList<>();
         players.add("1");
         players.add("2");
         players.add("3");
@@ -186,7 +187,9 @@ public class MultiplayerSelectionActivity extends Activity {
                             thisActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                             startActivity(thisActivity);
                         }
-                    };
+                    }
+
+                    ;
                 });
 
                 Button c = d.getButton(AlertDialog.BUTTON_NEGATIVE);
@@ -202,7 +205,8 @@ public class MultiplayerSelectionActivity extends Activity {
                     }
                 });
 
-            }});
+            }
+        });
         d.show();
     }
 
@@ -243,7 +247,7 @@ public class MultiplayerSelectionActivity extends Activity {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        editor.putInt("nPlayers",Integer.valueOf(nPlayerSpinner.getSelectedItem().toString()));
+        editor.putInt("nPlayers", Integer.valueOf(nPlayerSpinner.getSelectedItem().toString()));
 
         editor.commit();
     }

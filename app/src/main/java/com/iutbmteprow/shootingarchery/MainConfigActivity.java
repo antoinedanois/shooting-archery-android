@@ -11,17 +11,12 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainConfigActivity extends Activity {
 
@@ -51,21 +46,21 @@ public class MainConfigActivity extends Activity {
         readPreferences();
     }
 
-    private void loadAttributes(){
+    private void loadAttributes() {
         competition = (RadioButton) findViewById(R.id.config2_radioCompetition);
         entrainement = (RadioButton) findViewById(R.id.config2_radioEntrainement);
         interieurRadio = (RadioButton) findViewById(R.id.config3_radioInterieur);
         exterieurRadio = (RadioButton) findViewById(R.id.config3_radioExterieur);
 
-        distanceContainer=(LinearLayout)findViewById(R.id.refresh_match_layout);
+        distanceContainer = (LinearLayout) findViewById(R.id.refresh_match_layout);
 
         CompoundButton.OnCheckedChangeListener occl = new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked)
                     return;
 
-                switch(buttonView.getId()) {
+                switch (buttonView.getId()) {
                     case R.id.config2_radioCibleBlason: {
                         distanceContainer.setVisibility(View.VISIBLE);
                         break;
@@ -82,11 +77,11 @@ public class MainConfigActivity extends Activity {
                 }
             }
         };
-        classiqueRadio = (RadioButton)findViewById(R.id.config2_radioCibleBlason);
+        classiqueRadio = (RadioButton) findViewById(R.id.config2_radioCibleBlason);
         classiqueRadio.setOnCheckedChangeListener(occl);
-        trispotRadio = (RadioButton)findViewById(R.id.config2_radioCibleTrispot);
+        trispotRadio = (RadioButton) findViewById(R.id.config2_radioCibleTrispot);
         trispotRadio.setOnCheckedChangeListener(occl);
-        campagneRadio = (RadioButton)findViewById(R.id.config2_radioCibleCampagne);
+        campagneRadio = (RadioButton) findViewById(R.id.config2_radioCibleCampagne);
         campagneRadio.setOnCheckedChangeListener(occl);
 
         distance = (SeekBar) findViewById(R.id.config3_seekDistance);
@@ -99,9 +94,9 @@ public class MainConfigActivity extends Activity {
 
     }
 
-    private void setupDistanceBar(){
+    private void setupDistanceBar() {
         /*
-		 * PROGRESSION SEEKBAR WITH BUTTON
+         * PROGRESSION SEEKBAR WITH BUTTON
 		 */
 
         //SEEKBAR DISTANCE
@@ -117,7 +112,7 @@ public class MainConfigActivity extends Activity {
         nextSeekbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                distance.setProgress(distance.getProgress()+1);
+                distance.setProgress(distance.getProgress() + 1);
             }
         });
 
@@ -150,68 +145,61 @@ public class MainConfigActivity extends Activity {
     private void readPreferences() {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
 
-        if(preferences.getBoolean("RadioCibleCampagne", false)) {
+        if (preferences.getBoolean("RadioCibleCampagne", false)) {
             classiqueRadio.setChecked(true);
         }
-        if(preferences.getBoolean("RadioCibleBlason", false)){
+        if (preferences.getBoolean("RadioCibleBlason", false)) {
             trispotRadio.setChecked(true);
         }
-        if(preferences.getBoolean("RadioCibleTrispot", false)){
+        if (preferences.getBoolean("RadioCibleTrispot", false)) {
             trispotRadio.setChecked(true);
         }
 
         //lecture choix condition
-        if(preferences.getBoolean("RadioEntrainement", false))
+        if (preferences.getBoolean("RadioEntrainement", false))
             entrainement.setChecked(true);
-        if(preferences.getBoolean("RadioCompetition", false))
+        if (preferences.getBoolean("RadioCompetition", false))
             competition.setChecked(true);
 
         //lecture choix interieur/exterieur
-        if(preferences.getBoolean("RadioInterieur", false))
+        if (preferences.getBoolean("RadioInterieur", false))
             interieurRadio.setChecked(true);
-        if(preferences.getBoolean("RadioExterieur", false))
+        if (preferences.getBoolean("RadioExterieur", false))
             exterieurRadio.setChecked(true);
 
         //lecture distance
-        String TextDistance=preferences.getString("textProgressDistance", "50");
+        String TextDistance = preferences.getString("textProgressDistance", "50");
         textProgressDistance.setText(TextDistance);
-        int SeekBarDistance=preferences.getInt("progressDistance", 50);
+        int SeekBarDistance = preferences.getInt("progressDistance", 50);
         distance.setProgress(SeekBarDistance);
         //fin lecture distance
     }
 
 
-
-
-
-    private void setupActionBar()
-    {
+    private void setupActionBar() {
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.config, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.action_next:
                 //Erreur de saisie ?
                 if (!checkInputs())
                     return true;
 
-                if (campagneRadio.isChecked()){
+                if (campagneRadio.isChecked()) {
                     savePreferences();
                     Intent intent = new Intent(this, Config3CampagneActivity.class);
                     startActivity(intent);
-                }else{
+                } else {
                     savePreferences();
                     Intent intent = new Intent(this, IndividualConfigActivity.class);
                     startActivity(intent);
@@ -225,18 +213,18 @@ public class MainConfigActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean checkInputs(){
-        if(!competition.isChecked() && !entrainement.isChecked()){
-            makeAlert(getString(R.string.erreur),getString(R.string.conditions_error));
+    private boolean checkInputs() {
+        if (!competition.isChecked() && !entrainement.isChecked()) {
+            makeAlert(getString(R.string.erreur), getString(R.string.conditions_error));
             return false;
         }
 
-        if(!interieurRadio.isChecked() && !exterieurRadio.isChecked()){
+        if (!interieurRadio.isChecked() && !exterieurRadio.isChecked()) {
             makeAlert(getString(R.string.erreur), getString(R.string.int_ext_error));
             return false;
         }
 
-        if(textProgressDistance.equals("0")){
+        if (textProgressDistance.equals("0")) {
             makeAlert(getString(R.string.erreur), getString(R.string.distance_error));
             return false;
         }
@@ -248,12 +236,11 @@ public class MainConfigActivity extends Activity {
         SharedPreferences preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        editor.putInt("lastPlayer",0);
-
+        editor.putInt("lastPlayer", 0);
 
 
         //Choix cible
-        editor.putBoolean("ImageClassique",classiqueRadio.isChecked());
+        editor.putBoolean("ImageClassique", classiqueRadio.isChecked());
         editor.putBoolean("ImageTrispot", trispotRadio.isChecked());
         editor.putBoolean("ImageCampagne", campagneRadio.isChecked());
 
@@ -267,15 +254,14 @@ public class MainConfigActivity extends Activity {
 
         //choix distance
         editor.putString("textProgressDistance", textProgressDistance.getText().toString());
-        int progressDistance= distance.getProgress();
+        int progressDistance = distance.getProgress();
         editor.putInt("progressDistance", progressDistance);
         //fin choix distance
 
         editor.commit();
     }
 
-    private void makeAlert(String title,String message)
-    {
+    private void makeAlert(String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.error));
         alertDialog.setMessage(message);

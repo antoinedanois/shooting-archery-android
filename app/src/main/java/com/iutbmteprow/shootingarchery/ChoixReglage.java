@@ -3,7 +3,6 @@ package com.iutbmteprow.shootingarchery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,18 +17,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.iutbmteprow.shootingarchery.dbman.Arc;
 import com.iutbmteprow.shootingarchery.dbman.DBHelper;
 import com.iutbmteprow.shootingarchery.dbman.Graduation;
 import com.iutbmteprow.shootingarchery.dbman.TypeArc;
+
+import java.util.List;
 
 
 public class ChoixReglage extends Activity {
@@ -207,16 +202,17 @@ public class ChoixReglage extends Activity {
     }
 
 
-
     private void setupActionBar() {
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.arc, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
@@ -239,7 +235,7 @@ public class ChoixReglage extends Activity {
     private void showDeleteArc() {
         final AlertDialog d = new AlertDialog.Builder(this)
                 .setTitle(R.string.delete_arc)
-                .setMessage("Voulez vous supprimer l'arc "+ nomArc +" et ses réglages définitivement ?")
+                .setMessage("Voulez vous supprimer l'arc " + nomArc + " et ses réglages définitivement ?")
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -256,7 +252,7 @@ public class ChoixReglage extends Activity {
     }
 
 
-    protected void showAddReglage (){
+    protected void showAddReglage() {
         final AlertDialog d = new AlertDialog.Builder(this)
                 .setTitle(R.string.add_reg)
                 .setView(this.getLayoutInflater().inflate(R.layout.popup_add_reglage, null))
@@ -274,12 +270,11 @@ public class ChoixReglage extends Activity {
 
             @Override
             public void onShow(DialogInterface dialog) {
-                Editdistance = (EditText) ((Dialog)d).findViewById(R.id.popup_distance_reg);
-                Edithorizontal = (EditText) ((Dialog)d).findViewById(R.id.popup_horizontal_reg);
-                Editvertical = (EditText) ((Dialog)d).findViewById(R.id.popup_vertical_reg);
-                Editprofondeur = (EditText) ((Dialog)d).findViewById(R.id.popup_profondeur_reg);
-                Editremarque = (EditText) ((Dialog)d).findViewById(R.id.popup_remarque_reg);
-
+                Editdistance = (EditText) ((Dialog) d).findViewById(R.id.popup_distance_reg);
+                Edithorizontal = (EditText) ((Dialog) d).findViewById(R.id.popup_horizontal_reg);
+                Editvertical = (EditText) ((Dialog) d).findViewById(R.id.popup_vertical_reg);
+                Editprofondeur = (EditText) ((Dialog) d).findViewById(R.id.popup_profondeur_reg);
+                Editremarque = (EditText) ((Dialog) d).findViewById(R.id.popup_remarque_reg);
 
 
                 Button b = d.getButton(AlertDialog.BUTTON_POSITIVE);
@@ -297,25 +292,25 @@ public class ChoixReglage extends Activity {
 
                         if (distance.isEmpty()) {
                             Editdistance.setError(getString(R.string.distance_not_null));
-                            submit =false;
+                            submit = false;
                         }
                         if (horizontal.isEmpty()) {
                             Edithorizontal.setError(getString(R.string.horizontal_not_null));
-                            submit =false;
+                            submit = false;
                         }
                         if (vertical.isEmpty()) {
                             Editvertical.setError(getString(R.string.vertical_not_null));
-                            submit =false;
+                            submit = false;
                         }
                         if (profondeur.isEmpty()) {
                             Editprofondeur.setError(getString(R.string.profondeur_not_null));
-                            submit =false;
+                            submit = false;
                         }
 
 
-                        if (submit){
+                        if (submit) {
 
-                            db.addGraduation(new Graduation(arcSelect.getIdArc(), 0,Integer.valueOf(distance),remarque , Float.parseFloat(horizontal),Float.parseFloat(vertical),Float.parseFloat(profondeur)));
+                            db.addGraduation(new Graduation(arcSelect.getIdArc(), 0, Integer.valueOf(distance), remarque, Float.parseFloat(horizontal), Float.parseFloat(vertical), Float.parseFloat(profondeur)));
                             ListreglageFragments(arcSelect.getIdArc());
                             d.dismiss();
                         }
@@ -325,7 +320,6 @@ public class ChoixReglage extends Activity {
         });
         d.show();
     }
-
 
 
 }

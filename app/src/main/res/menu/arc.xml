@@ -7,13 +7,11 @@
         android:icon="@drawable/action_discard"
         shootingarchery:showAsAction="always"
         android:showAsAction="always"
-        android:title="@string/delete_arc">
-    </item>
+        android:title="@string/delete_arc"></item>
     <item
         android:id="@+id/action_add"
         android:orderInCategory="100"
         android:icon="@drawable/plus"
         shootingarchery:showAsAction="always"
-        android:title="@string/add_arc">
-    </item>
+        android:title="@string/add_arc"></item>
 </menu>

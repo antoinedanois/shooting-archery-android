@@ -14,8 +14,7 @@ public class Campagne {
     private boolean competition;
     private String NomArc;
 
-    public Campagne(int idCampagne, int idUtilisateur, boolean partieFini, Date datePartie, int nbCibles, boolean competition, String NomArc)
-    {
+    public Campagne(int idCampagne, int idUtilisateur, boolean partieFini, Date datePartie, int nbCibles, boolean competition, String NomArc) {
         super();
         this.idCampagne = idCampagne;
         this.idUtilisateur = idUtilisateur;
@@ -34,6 +33,7 @@ public class Campagne {
     public int getIdUtilisateur() {
         return idUtilisateur;
     }
+
     public void setIdUtilisateur(int idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
@@ -41,6 +41,7 @@ public class Campagne {
     public boolean isPartieFini() {
         return partieFini;
     }
+
     public void setPartieFini(boolean partieFini) {
         this.partieFini = partieFini;
     }
@@ -48,6 +49,7 @@ public class Campagne {
     public Date getDatePartie() {
         return datePartie;
     }
+
     public void setDatePartie(Date datePartie) {
         this.datePartie = datePartie;
     }
@@ -56,13 +58,15 @@ public class Campagne {
     public int getNbCibles() {
         return nbCibles;
     }
+
     public void setNbCibles(int nbCibles) {
-        this.nbCibles= nbCibles;
+        this.nbCibles = nbCibles;
     }
 
     public boolean isCompetition() {
         return competition;
     }
+
     public void setCompetition(boolean comp_entrain) {
         this.competition = comp_entrain;
     }

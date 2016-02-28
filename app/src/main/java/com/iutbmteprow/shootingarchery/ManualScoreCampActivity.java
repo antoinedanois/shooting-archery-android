@@ -1,32 +1,28 @@
 package com.iutbmteprow.shootingarchery;
 
-import java.util.ArrayList;
-
-import com.iutbmteprow.shootingarchery.dbman.DBHelper;
-import com.iutbmteprow.shootingarchery.dbman.Diametre;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.view.Menu;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
 import android.widget.Toast;
+
+import com.iutbmteprow.shootingarchery.dbman.DBHelper;
+
+import java.util.ArrayList;
 
 public class ManualScoreCampActivity extends Activity implements OnFocusChangeListener {
 
@@ -35,55 +31,53 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
     RadioButton soixanteRadio = null;
     RadioButton quatrevingtRadio = null;
 
-	private RadioButton inconnu;
-	private RadioButton connu;
+    private RadioButton inconnu;
+    private RadioButton connu;
 
-	private Spinner spinner;
-//
-	ArrayList<EditText> editTexts;
+    private Spinner spinner;
+    //
+    ArrayList<EditText> editTexts;
 
-	EditText textCourant;
-	SharedPreferences preferences;
-	private DBHelper db;
-	
-	
-	private SeekBar distance = null;
-	private TextView textProgressDistance;
-	int ProgressChanged = 5;
+    EditText textCourant;
+    SharedPreferences preferences;
+    private DBHelper db;
 
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_manual_score_camp);
+    private SeekBar distance = null;
+    private TextView textProgressDistance;
+    int ProgressChanged = 5;
 
-		// Show the Up button in the action bar.
-		setupActionBar();
 
-		
-		preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_manual_score_camp);
 
-		
-		db = new DBHelper(this);
-		
-		initScoreBtns();
-		initScoreViews();
-		
-		Button btValidateVolees = (Button) findViewById(R.id.manscore_buttonValidate);
-		btValidateVolees.setOnClickListener(validateVolees);
-		//Seekbar
-		
-		
-		distance = (SeekBar) findViewById(R.id.Seekbar_score_2);
-		textProgressDistance = (TextView) findViewById(R.id.Distance_score_2);
-		
-		
+        // Show the Up button in the action bar.
+        setupActionBar();
 
-		distance.setMax((65 - 5) );
+
+        preferences = getSharedPreferences("partie", Context.MODE_PRIVATE);
+
+
+        db = new DBHelper(this);
+
+        initScoreBtns();
+        initScoreViews();
+
+        Button btValidateVolees = (Button) findViewById(R.id.manscore_buttonValidate);
+        btValidateVolees.setOnClickListener(validateVolees);
+        //Seekbar
+
+
+        distance = (SeekBar) findViewById(R.id.Seekbar_score_2);
+        textProgressDistance = (TextView) findViewById(R.id.Distance_score_2);
+
+
+        distance.setMax((65 - 5));
         textProgressDistance.setText("5");
-		
-		distance.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        distance.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 
             public void onProgressChanged(SeekBar distance, int progress, boolean fromUser) {
@@ -105,19 +99,17 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
             }
 
         });
-		
-		
-		
-	}
+
+
+    }
 
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus){
+    public void onFocusChange(View v, boolean hasFocus) {
         textCourant = (EditText) v;
     }
 
-    protected void avancerTextCourant()
-    {
+    protected void avancerTextCourant() {
         int idCourant = editTexts.indexOf(textCourant);
         if (idCourant == editTexts.size() - 1)
             return;
@@ -125,60 +117,52 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
         textCourant.requestFocus();
     }
 
-	private void setupActionBar() 
-	{
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
+    private void setupActionBar() {
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) 
-	{
-		switch (item.getItemId()) 
-		{
-
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
+    //The score things ....
 
-	
-	//The score things ....
-	
-	
-	private void initScoreViews() {
-		
-		editTexts = new ArrayList<EditText>();
-		editTexts.add((EditText) findViewById(R.id.manscore_edittext1_2));
-		editTexts.add((EditText) findViewById(R.id.manscore_edittext2_2));
-		editTexts.add((EditText) findViewById(R.id.manscore_edittext3_2));
-		
-		for (EditText edt : editTexts) {
-			edt.setOnFocusChangeListener(this);
-			edt.setVisibility(View.VISIBLE);
-		}
-		textCourant = editTexts.get(0);
-	}
-	
-	
-	
-	private void initScoreBtns() {
-		ArrayList<Button> scoreBtns = new ArrayList<Button>();
-		Button score0 = (Button) findViewById(R.id.manscore_buttonScore0_2);
 
+    private void initScoreViews() {
+
+        editTexts = new ArrayList<EditText>();
+        editTexts.add((EditText) findViewById(R.id.manscore_edittext1_2));
+        editTexts.add((EditText) findViewById(R.id.manscore_edittext2_2));
+        editTexts.add((EditText) findViewById(R.id.manscore_edittext3_2));
+
+        for (EditText edt : editTexts) {
+            edt.setOnFocusChangeListener(this);
+            edt.setVisibility(View.VISIBLE);
+        }
+        textCourant = editTexts.get(0);
+    }
+
+
+    private void initScoreBtns() {
+        ArrayList<Button> scoreBtns = new ArrayList<Button>();
+        Button score0 = (Button) findViewById(R.id.manscore_buttonScore0_2);
 
 
         CompoundButton.OnCheckedChangeListener occl = new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked)
                     return;
-                switch(buttonView.getId()) {
+                switch (buttonView.getId()) {
                     case R.id.cibleBirdee: {
                         gazRadio.setChecked(false);
                         soixanteRadio.setChecked(false);
@@ -209,10 +193,10 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
         };
         CompoundButton.OnCheckedChangeListener occlConnu = new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked)
                     return;
-                switch(buttonView.getId()) {
+                switch (buttonView.getId()) {
                     case R.id.connu: {
                         inconnu.setChecked(false);
                         break;
@@ -241,60 +225,60 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
         inconnu = (RadioButton) findViewById(R.id.inconnu);
         inconnu.setOnCheckedChangeListener(occlConnu);
 
-		scoreBtns.add(score0);
-		scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore1_2));
-		scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore2_2));
-		scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore3_2));
-		scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore4_2));
-		scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore5_2));
-		scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore6_2));
+        scoreBtns.add(score0);
+        scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore1_2));
+        scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore2_2));
+        scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore3_2));
+        scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore4_2));
+        scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore5_2));
+        scoreBtns.add((Button) findViewById(R.id.manscore_buttonScore6_2));
 
-		
-		OnClickListener ocl = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				textCourant.setText(((Button) v).getText());
-				avancerTextCourant();
-			}
-		};
-		
-		for (Button btn : scoreBtns)
-			btn.setOnClickListener(ocl);
-		
-		score0.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				textCourant.setText("M");
-				avancerTextCourant();
-			}
-		});
-	}
+        OnClickListener ocl = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textCourant.setText(((Button) v).getText());
+                avancerTextCourant();
+            }
+        };
 
-            OnClickListener validateVolees = new OnClickListener() {
+        for (Button btn : scoreBtns)
+            btn.setOnClickListener(ocl);
+
+        score0.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                textCourant.setText("M");
+                avancerTextCourant();
+            }
+        });
+    }
+
+    OnClickListener validateVolees = new OnClickListener() {
         public void onClick(View v) {
             for (EditText edt : editTexts) {
                 if (edt.getText().toString().isEmpty()) {
                     Toast.makeText(v.getContext(), R.string.have_to_fill_fields, Toast.LENGTH_SHORT).show();
                     return;
-                }else if (!checkForm()){
+                } else if (!checkForm()) {
                     return;
                 }
             }
 
             int idCible = 0;
-            if (birdieRadio.isChecked()){
+            if (birdieRadio.isChecked()) {
                 idCible = db.getIdCibleFromName("Birdee").getId();
-            }else if (gazRadio.isChecked()){
+            } else if (gazRadio.isChecked()) {
                 idCible = db.getIdCibleFromName("Gazinière").getId();
-            }else if (soixanteRadio.isChecked()){
+            } else if (soixanteRadio.isChecked()) {
                 idCible = db.getIdCibleFromName("60").getId();
-            }else if (quatrevingtRadio.isChecked()){
+            } else if (quatrevingtRadio.isChecked()) {
                 idCible = db.getIdCibleFromName("80").getId();
             }
 
-            boolean typeCible =false;
-            if (connu.isChecked()){
+            boolean typeCible = false;
+            if (connu.isChecked()) {
                 typeCible = true;
             }
 
@@ -302,7 +286,7 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
             int idCampagne = preferences.getInt("idCampagne", 0);
             int noVolee = getIntent().getIntExtra("noVolee", 0);
 
-            int progressDistance= distance.getProgress();
+            int progressDistance = distance.getProgress();
 
 
             for (int i = 0; i < editTexts.size(); i++) {
@@ -314,7 +298,7 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
                 } else {
                     score = Integer.valueOf(text);
                 }
-                db.addTirerCampagne(idCampagne, noVolee, score, idCible, typeCible,progressDistance, i + 1);
+                db.addTirerCampagne(idCampagne, noVolee, score, idCible, typeCible, progressDistance, i + 1);
             }
             getSharedPreferences("partie", Context.MODE_PRIVATE).edit().putInt("currentVolee", ++noVolee).commit();
 
@@ -330,7 +314,7 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
     };
 
 
-    private void makeDialog(String title, String message){
+    private void makeDialog(String title, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.error));
         alertDialog.setMessage(message);
@@ -347,36 +331,32 @@ public class ManualScoreCampActivity extends Activity implements OnFocusChangeLi
 
 
     private boolean checkForm() {
-        if(!birdieRadio.isChecked() && !gazRadio.isChecked()&& !soixanteRadio.isChecked()&& !quatrevingtRadio.isChecked()){
-            makeDialog(getString(R.string.erreur),getString(R.string.erreur_radio_non_check));
+        if (!birdieRadio.isChecked() && !gazRadio.isChecked() && !soixanteRadio.isChecked() && !quatrevingtRadio.isChecked()) {
+            makeDialog(getString(R.string.erreur), getString(R.string.erreur_radio_non_check));
             return false;
-        }else if(!connu.isChecked() && !inconnu.isChecked()){
-            makeDialog(getString(R.string.erreur),getString(R.string.type_cible_error));
+        } else if (!connu.isChecked() && !inconnu.isChecked()) {
+            makeDialog(getString(R.string.erreur), getString(R.string.type_cible_error));
             return false;
-        }else if (ProgressChanged == 0 ) {
-            makeDialog(getString(R.string.erreur),getString(R.string.distance_error));
+        } else if (ProgressChanged == 0) {
+            makeDialog(getString(R.string.erreur), getString(R.string.distance_error));
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-	private void makeAlert(String title,String message) 
-	{
-		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-		alertDialog.setTitle(getString(R.string.error));
-		alertDialog.setMessage(message);
-		alertDialog.setIcon(R.drawable.warning_dark);
-		alertDialog.setButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				// Nothing here
-			}
-		});
-		alertDialog.show();
-	}
+    private void makeAlert(String title, String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle(getString(R.string.error));
+        alertDialog.setMessage(message);
+        alertDialog.setIcon(R.drawable.warning_dark);
+        alertDialog.setButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Nothing here
+            }
+        });
+        alertDialog.show();
+    }
 
 
-
-	
-	
 }

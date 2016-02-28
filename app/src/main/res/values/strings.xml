@@ -168,7 +168,7 @@
     <string name="cible24">24 </string>
     <string name="num_cible">Numéro de la première cible :</string>
 
-    <string  name="known_unknown">Veuillez choisir le Type de cible.</string>
+    <string name="known_unknown">Veuillez choisir le Type de cible.</string>
     <string name="enter_score">Entrer score</string>
     <string name="connu">Connu</string>
     <string name="inconnu">Inconnu</string>
@@ -269,12 +269,12 @@
     <color name="color_jaune">#FFC04D</color>
 
     <string-array name="colonnes_10_10p">
-        <item >Total par volée</item>
-        <item >Total cumulé</item>
+        <item>Total par volée</item>
+        <item>Total cumulé</item>
     </string-array>
     <string-array name="colonnes_10_10p_values">
-        <item >per_row</item>
-        <item >per_game</item>
+        <item>per_row</item>
+        <item>per_game</item>
     </string-array>
     <string name="name_no_space">Le nom ne peut pas contenir d\'espace.</string>
     <string name="firstname_no_space">Le prenom ne peut pas contenir d\'espace.</string>
@@ -284,9 +284,28 @@
     <string name="title_activity_main_config">Main Config</string>
     <string name="joueurCourante">Joueur </string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_in_game_multi">InGameMultiActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_login">Se connecter</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="upload">Envoyer au serveur</string>
+    <string name="title_activity_weblink">WeblinkActivity</string>
+    <string name="lien_web">Modifier le lien</string>
+    <string name="publish">Publier</string>
+    <string name="disconnect">Se déconnecter</string>
 
 </resources>

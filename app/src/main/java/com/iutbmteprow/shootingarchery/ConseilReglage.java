@@ -1,7 +1,6 @@
 package com.iutbmteprow.shootingarchery;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -38,34 +37,30 @@ public class ConseilReglage extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_reg_tiller:
-                    if( findViewById(R.id.layout_tiller).getVisibility()== View.VISIBLE){
+                    if (findViewById(R.id.layout_tiller).getVisibility() == View.VISIBLE) {
                         ((LinearLayout) findViewById(R.id.layout_tiller)).setVisibility(View.GONE);
-                    }
-                    else if(findViewById(R.id.layout_tiller).getVisibility()== View.GONE){
+                    } else if (findViewById(R.id.layout_tiller).getVisibility() == View.GONE) {
                         ((LinearLayout) findViewById(R.id.layout_tiller)).setVisibility(View.VISIBLE);
                     }
                     break;
                 case R.id.btn_reg_band:
-                    if( findViewById(R.id.layout_band).getVisibility()== View.VISIBLE){
+                    if (findViewById(R.id.layout_band).getVisibility() == View.VISIBLE) {
                         ((LinearLayout) findViewById(R.id.layout_band)).setVisibility(View.GONE);
-                    }
-                    else if(findViewById(R.id.layout_band).getVisibility()== View.GONE){
+                    } else if (findViewById(R.id.layout_band).getVisibility() == View.GONE) {
                         ((LinearLayout) findViewById(R.id.layout_band)).setVisibility(View.VISIBLE);
                     }
                     break;
                 case R.id.btn_reg_detal:
-                    if( findViewById(R.id.layout_detal).getVisibility()== View.VISIBLE){
+                    if (findViewById(R.id.layout_detal).getVisibility() == View.VISIBLE) {
                         ((LinearLayout) findViewById(R.id.layout_detal)).setVisibility(View.GONE);
-                    }
-                    else if(findViewById(R.id.layout_detal).getVisibility()== View.GONE){
+                    } else if (findViewById(R.id.layout_detal).getVisibility() == View.GONE) {
                         ((LinearLayout) findViewById(R.id.layout_detal)).setVisibility(View.VISIBLE);
                     }
                     break;
                 case R.id.btn_reg_berger:
-                    if( findViewById(R.id.layout_berger).getVisibility()== View.VISIBLE){
+                    if (findViewById(R.id.layout_berger).getVisibility() == View.VISIBLE) {
                         ((LinearLayout) findViewById(R.id.layout_berger)).setVisibility(View.GONE);
-                    }
-                    else if(findViewById(R.id.layout_berger).getVisibility()== View.GONE){
+                    } else if (findViewById(R.id.layout_berger).getVisibility() == View.GONE) {
                         ((LinearLayout) findViewById(R.id.layout_berger)).setVisibility(View.VISIBLE);
                     }
                     break;
