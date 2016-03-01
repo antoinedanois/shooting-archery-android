@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +97,9 @@ public class PlayerSelectionFragment extends Fragment {
 
         String[] nomUtil = userSpinner.split(" ");
         editor.putInt("idUtilisateur"+noPlayer, db.getUtilisateurFromName(nomUtil[1], nomUtil[0]).getId());
+        if(noPlayer==0){
+            editor.putInt("idUtilisateur", db.getUtilisateurFromName(nomUtil[1], nomUtil[0]).getId());
+        }
 
         editor.commit();
     }

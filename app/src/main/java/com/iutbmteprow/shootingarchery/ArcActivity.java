@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -86,7 +87,7 @@ public class ArcActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String[] userName = userSpinner.getSelectedItem().toString().split(" ");
-                Utilisateur curUser = db.getUtilisateurFromName(userName[0], userName[1]);
+                Utilisateur curUser = db.getUtilisateurFromName(userName[1], userName[0]);
                 idUserSelected = curUser.getId();
                 ListArcFragments(curUser.getId());
             }
