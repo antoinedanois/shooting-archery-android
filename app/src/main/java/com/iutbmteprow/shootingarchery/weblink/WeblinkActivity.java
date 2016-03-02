@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iutbmteprow.shootingarchery.R;
@@ -30,7 +31,7 @@ public class WeblinkActivity extends Activity {
     public static final String CURRENT_USER_EMAIL = "current_user_email";
     public static final String CURRENT_USER_TOKEN = "current_user_token";
     public static final String WEB_URL = "web_url";
-    public static final String DEFAULT_URL = "http://150b8981.ngrok.io";
+    public static final String DEFAULT_URL = "http://76394721.ngrok.io";
 
     DBHelper db;
     SharedPreferences sp;
@@ -110,7 +111,7 @@ public class WeblinkActivity extends Activity {
         String current_user_email = sp.getString(CURRENT_USER_EMAIL, "");
         String current_user_token = sp.getString(CURRENT_USER_TOKEN, "");
         if (current_user_email.isEmpty() || current_user_token.isEmpty()) {
-            //onBackPressed();
+            onBackPressed();
         }
 
     }
@@ -138,8 +139,21 @@ public class WeblinkActivity extends Activity {
             String payload = params[2];
             String formatedJson = "{\"api_token\":\"" + api_token + "\", \"payload\":" + payload + "}";
             Log.e("FORMATED", formatedJson);
-            post.post(url + "/api/game/create", formatedJson);
-            return true;
+            Boolean response = post.post(url + "/api/game/create", formatedJson);
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            Toast toast = Toast.makeText(getApplicationContext(),"Résultats publiés", Toast.LENGTH_LONG);
+            if (aBoolean){
+                toast.show();
+                onBackPressed();
+            } else {
+                toast.setText("Une erreur est survenue");
+                toast.show();
+                onBackPressed();
+            }
         }
     }
 

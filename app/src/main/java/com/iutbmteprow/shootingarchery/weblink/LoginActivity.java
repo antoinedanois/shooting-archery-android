@@ -309,7 +309,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             String url = getSharedPreferences(WeblinkActivity.WEB_LINK_SETTINGS, Context.MODE_PRIVATE).getString(WeblinkActivity.WEB_URL, "");
 
             try {
-                user = new Authenticate("http://ae9399d5.ngrok.io/api/user/get_token.json", mEmail, mPassword).run();
+                user = new Authenticate(WeblinkActivity.DEFAULT_URL+"/api/user/get_token.json", mEmail, mPassword).run();
             } catch (Exception e) {
                 return false;
             }

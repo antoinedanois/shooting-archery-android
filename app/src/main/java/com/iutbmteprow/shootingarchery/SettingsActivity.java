@@ -84,6 +84,19 @@ public class SettingsActivity extends PreferenceActivity {
                 return true;
             }
         });
+
+        Preference changeLink = findPreference("edit_web_link");
+        changeLink.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                changeWebLink();
+                return true;
+            }
+        });
+    }
+
+    private void changeWebLink() {
+
     }
 
     protected void showResetDatabase() {
